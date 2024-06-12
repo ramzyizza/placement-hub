@@ -1,0 +1,141 @@
+entity UserCompany {
+    name String required,
+    logo ImageBlob,
+    profileImageBackground ImageBlob,
+    companySize CompanySize required,
+    Industry Industry required,
+    totalLocation Integer required
+}
+
+entity Calendar
+{
+    calendarName String required
+    calendarDescription String
+    calendarColor Color required
+}
+
+enum Color {
+    RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, PINK, OPTIONAL
+}
+
+enum RepeatType {
+    DAILY, WEEKLY, MONTHLY, YEARLY, NA
+}
+
+enum EventType {
+    NORMAL, INTERVIEW, AC
+}
+
+entity Event {
+    eventName String required,
+    eventDescription String,
+    eventColor Color,
+    eventType EventType required,
+    eventStart ZonedDateTime required,
+    eventEnd ZonedDateTime required,
+    eventRepeat RepeatType required,
+    eventLocation String,
+}
+
+entity Card {
+    applicationStatus CardStatus required,
+    createdDateTime ZonedDateTime,
+    companyName String required,
+    jobTitle String required,
+    jobLocation String,
+    jobDuration String
+}
+
+enum CardStatus {
+    SUBMITTED, FIRST_STAGE, SECOND_STAGE, FINAL_STAGE, REJECTED, ACCEPTED
+}
+
+entity CompanyPosts {
+    postContent String required,
+    postImage ImageBlob,
+    createdAt ZonedDateTime required
+}
+
+entity Article {
+    articleName String required,
+    contentType ContentType required,
+    sourceLink String,
+    thumbnail ImageBlob required,
+    createdAt ZonedDateTime
+}
+
+entity Video {
+    videoTitle String required,
+    description String ,
+    contentType ContentType required,
+    thumbnail ImageBlob required,
+    createdAt ZonedDateTime required,
+    sourceURL String required
+}
+
+entity Favourite {
+    createdAt ZonedDateTime required
+
+}
+
+enum ContentType {
+    AGRICULTURE, CONSTRUCTION, HEALTHCARE, TECHNOLOGY, FINANCE, ENTERTAINMENT, TRANSPORT, MEDIA, ENGINEERING, PHARMACEUTICAL, RETAIL, CHEMICAL, INTERVIEW, ASSESSMENT, LAW
+}
+
+entity Document {
+    title String required,
+    content TextBlob,
+    lastEdit ZonedDateTime required
+}
+
+entity Placement {
+    role String required,
+    location String required,
+    salary Integer required,
+    duration Integer required,
+    industry String required,
+    about TextBlob required,
+    jobDescription TextBlob required ,
+    minimumQualification TextBlob required,
+    applicationDeadline ZonedDateTime required
+}
+
+entity Review {
+    companyName String required,
+    role String required,
+    rating Integer required,
+    review String required,
+    recommend Boolean required
+}
+
+enum CompanySize {
+    LESS_THAN_500, BETWEEN_500_AND_1000, BETWEEN_1001_AND_5000, BETWEEN_5001_AND_10000, MORE_THAN_10000
+}
+
+enum Industry {
+    Agriculture, Aerospace, Media_and_News, Healthcare, Hospitality, Technology, Economic, Construction, Entertainment, Transportation, Mining, Telecommunication, Manufacture, Electronics, Education, Energy, Pharmaceutical, Computer_Industry, Retail, Chemicals, Food_Service
+}
+
+// Relationships
+relationship OneToMany {
+    UserCompany{post} to CompanyPosts{userCompany}
+    UserCompany{job} to Placement{userCompany}
+    UserCompany{review} to Review{userCompany}
+
+    Article{favourites} to Favourite{article}
+    Video{favourites} to Favourite{video}
+    Calendar{event} to Event{calendar}
+}
+
+relationship ManyToOne{
+    Event{appUser} to User
+    Card{appUser} to User
+    Document{appUser} to User
+    Review{appUser} to User
+    Favourite{appUser} to User
+    Calendar{appUser} to User
+}
+
+relationship OneToOne {
+    UserCompany{appUser} to User
+}
