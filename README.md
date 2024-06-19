@@ -64,13 +64,13 @@ This application was generated using JHipster 7.9.4. Documentation and support a
 
 ### Team Members
 
-- Ramzy Izza Wardhana (riw382@student.bham.ac.uk)
-- Laila Tantavy (lxt211@student.bham.ac.uk)
-- Chibueze David Ogbonna (cxo242@student.bham.ac.uk)
-- Katarina Keishanti Joanne Kartakusuma (kxk362@student.bham.ac.uk)
-- Shravni Kulkarni (sxk1332@student.bham.ac.uk)
-- Andrei Argeanu (axa1941@student.bham.ac.uk)
-- Suhel Malik (sxm1735@student.bham.ac.uk)
+- Ramzy Izza Wardhana
+- Laila Tantavy
+- Chibueze David Ogbonna
+- Katarina Keishanti Joanne Kartakusuma
+- Shravni Kulkarni
+- Andrei Argeanu
+- Suhel Malik
 
 ### Changes for Team Project
 
