@@ -1,0 +1,71 @@
+<div class="footer">
+  <div class="container">
+    <span class="logo-img"></span>
+
+    <p class="footer-par footer-font">
+      You are accessing an experimental web application developed by participants of the Team Project 2024 module.
+    </p>
+    <p class="footer-font">
+      All images, assets, and fonts are royalty-free and copyright-free, and are publicly available for use for non-commercial purposes.
+      Source: Freepik.
+    </p>
+    <a class="privacy" routerLink="gdpr">Read more about our Privacy and Policy</a>
+
+    <h4 class="footer-team footer-font">Team 8</h4>
+  </div>
+</div>
+
+<div class="container">
+  <div class="chatForm">
+    <button accesskey="g" class="open-button" (click)="openForm()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chat-right-text" viewBox="0 0 16 16">
+        <path
+          d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"
+        />
+        <path
+          d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"
+        />
+      </svg>
+    </button>
+    <div class="form-popup">
+      <form class="form-container">
+        <h1>Let's chat</h1>
+
+        <!--input class="AI" type="text" placeholder="AI: Press ALT+SHIFT+g to talk" name="email" required>
+
+        <input class="YOU" type="text" placeholder=":YOU" name="psw" required-->
+        <div class="chatContain">
+          <div *ngFor="let chat of chatting; let i = index">
+            <div class="AI displayResponse"><span style="color: transparent; text-shadow: 0 0 0 #7c67c5">👤</span> {{ chat }}</div>
+            <div class="USER displayResponse">{{ userChat[i] }}<span style="color: transparent; text-shadow: 0 0 0 #b89cff">👤</span></div>
+          </div>
+        </div>
+        <div class="container">
+          <button accesskey="k" (click)="startListening()" type="submit" class="btn mike">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-mic" viewBox="0 0 16 16">
+              <path
+                d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5"
+              />
+              <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3" />
+            </svg>
+          </button>
+          <button accesskey="s" (click)="send()" type="submit" class="btn styleBtn send">Send</button>
+          <button type="button" class="btn styleBtn cancel" (click)="closeForm()"><b>&#x2715;</b></button>
+        </div>
+
+        <div>
+          <input
+            id="clear"
+            #chatInput
+            type="text"
+            placeholder="Press Send or ALT+SHIFT+s to enter"
+            name="chat"
+            required
+            class="AI"
+            [(ngModel)]="myVariable"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

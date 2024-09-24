@@ -1,0 +1,35 @@
+.container {
+  margin-block: 7rem;
+}
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 50%;
+  }
+}
+
+.btn-submit {
+  padding: 0.8rem 2.5rem;
+  border-radius: 50px;
+  background-color: #5857a8;
+  margin-block: 1.5rem;
+  border: 0;
+}
+
+.btn-submit:hover {
+  background-color: #c4aff4;
+}
+
+.form-control {
+  border-radius: 30px;
+  padding: 1rem 1.5rem;
+  margin-block: 0.2rem 0.5rem;
+}
+
+.title {
+  margin-bottom: 2rem;
+}

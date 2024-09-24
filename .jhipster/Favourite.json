@@ -1,0 +1,39 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305184008",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "favourite",
+  "fields": [
+    {
+      "fieldName": "createdAt",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Favourite",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "user",
+      "relationshipName": "appUser",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "article",
+      "otherEntityRelationshipName": "favourites",
+      "relationshipName": "article",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "video",
+      "otherEntityRelationshipName": "favourites",
+      "relationshipName": "video",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

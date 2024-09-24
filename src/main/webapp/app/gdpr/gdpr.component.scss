@@ -1,0 +1,79 @@
+.container {
+  width: 80%;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+}
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+.background-img {
+  background: url('../../content/images/GDP.png') no-repeat center center;
+  background-size: cover;
+  max-width: inherit;
+}
+
+.main-hero {
+  height: 20rem;
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font-weight: 500;
+  color: white;
+  font-size: 4rem;
+}
+
+.subtitle {
+  top: -5px;
+  position: relative;
+  color: #c4aff4;
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+.heading {
+  font-weight: 500;
+}
+
+.content {
+  font-size: 1.5rem;
+}
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.medium {
+  font-weight: 500;
+}
+
+.body {
+  margin-block: 7rem;
+}
+
+@media (max-width: 1250px) {
+  .title {
+    font-size: 3rem;
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 990px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+}

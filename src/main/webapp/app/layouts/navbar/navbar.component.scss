@@ -1,0 +1,189 @@
+@import '~bootstrap/scss/functions';
+@import '~bootswatch/dist/flatly/variables';
+@import '~bootstrap/scss/variables';
+
+/* ==========================================================================
+Navbar
+=============================================== =========================== */
+
+.navbar-version {
+  font-size: 0.65em;
+  color: white;
+}
+
+.profile-image {
+  height: 1.75em;
+  width: 1.75em;
+}
+
+.container-fluid {
+  max-width: 95%;
+}
+
+.navbar {
+  padding: 0.2rem 1rem;
+  background-color: #111b53;
+  color: #ffffff;
+  .nav-item {
+    margin-top: 2px;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+  }
+  .dropdown-item.active {
+    background-color: white;
+    color: #111b53;
+  }
+  .dropdown-item.active:focus {
+    background-color: white;
+    color: #111b53;
+  }
+  .dropdown-item.active:hover {
+    background-color: white;
+    color: #111b53;
+  }
+  a.nav-link {
+    font-weight: 300;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .navbar-toggler {
+    color: white;
+    &:hover {
+      color: white;
+    }
+  }
+  .dropdown-menu {
+    background-color: #111b53;
+    text-align: center;
+  }
+
+  .dropdown-item {
+    color: #ffffff;
+    text-align: left;
+    font-weight: 300;
+    font-family: 'Roboto', sans-serif;
+  }
+}
+
+/* ==========================================================================
+Logo styles
+========================================================================== */
+.logo-img {
+  height: 4rem;
+  width: 12rem;
+  display: inline-block;
+  vertical-align: middle;
+  background: url('../../../content/images/PlacementHub.png') no-repeat center center;
+  background-size: contain;
+}
+
+.btn-sign-out {
+  background-color: #5857a8;
+  border: 0;
+  border-radius: 100px;
+  margin-inline: 0.25rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.btn-sign:hover {
+  background-color: #9363ff;
+}
+
+.sign-out-text {
+  font-weight: 400;
+}
+
+.btn-sign-up {
+  background-color: white;
+  border: 0;
+  border-radius: 100px;
+  margin-inline: 0.3rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+.sign-up-text {
+  color: #7c67c5;
+  font-weight: 500;
+  //margin-inline: 2rem;
+}
+
+.btn-sign-up:hover {
+  background-color: #ded6fc;
+}
+
+.btn-login {
+  background-color: #c4aff4;
+  border: 0;
+  border-radius: 100px;
+  margin-inline: 0.25rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+.login-text {
+  color: white;
+  font-weight: 400;
+  margin-inline: 2rem;
+}
+
+.btn-login:hover {
+  background-color: #c67ff1;
+  .login-text {
+    color: white;
+  }
+}
+
+.btn-sign-out:hover {
+  background-color: #9363ff;
+}
+
+@media (max-width: 1400px) {
+  .btn-sign-out,
+  .btn-login,
+  .btn-sign-up {
+    width: 30%;
+  }
+  .navbar-collapse {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1400px) {
+  .navbar-nav {
+    justify-content: center;
+    flex-grow: 1;
+  }
+
+  .nav-item {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .navbar-expand-xl .navbar-nav {
+    justify-content: center;
+  }
+
+  .btn-login,
+  .btn-sign-out,
+  .btn-sign-up {
+    margin-block: 0.5rem;
+    padding-block: 0.75rem;
+  }
+
+  .btn-sign-out {
+    margin-bottom: 2rem;
+  }
+
+  .btn-login {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .sign-up-text {
+    margin-inline: 2rem;
+  }
+}

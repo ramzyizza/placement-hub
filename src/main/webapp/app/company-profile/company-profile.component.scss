@@ -1,0 +1,101 @@
+.results {
+  display: grid;
+  column-gap: 14px;
+  row-gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 400px));
+  margin-top: 50px;
+  justify-content: space-around;
+}
+.join {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 600;
+  font-family: Roboto, sans-serif;
+}
+.hipster {
+  display: inline-block;
+  width: 347px;
+  height: 497px;
+  background-size: contain;
+}
+
+/* wait autoprefixer update to allow simple generation of high pixel density media query */
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (-moz-min-device-pixel-ratio: 2),
+  only screen and (-o-min-device-pixel-ratio: 2/1),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
+  .hipster {
+    background-size: contain;
+  }
+}
+
+.container {
+  max-width: 95%;
+}
+
+.heading-hero {
+  font-size: 58px;
+  font-weight: 800;
+  font-family: Roboto, sans-serif;
+  margin: 0;
+}
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+.modal-p {
+  font-size: 1.25rem;
+}
+
+.heading-text2 {
+  color: #c4aff4;
+  font-size: 40px;
+  position: relative;
+  top: -1.25rem;
+}
+
+.container-fluid {
+  padding: 0px;
+  width: 80%;
+}
+
+.main-hero {
+  height: 28rem;
+  display: flex;
+  align-items: center;
+}
+
+.heading-subtitle {
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+  top: -1.5rem;
+  font-size: 30px;
+}
+
+.background-img {
+  background: url('../../content/images/company-background.jpg') no-repeat center center;
+  background-size: cover;
+  max-width: inherit;
+  backdrop-filter: blur(4px);
+}
+
+.btn-primary-home {
+  background-color: #c4aff4;
+  border: 0;
+  border-radius: 100px;
+  padding: 1rem 2rem;
+  margin-inline: 0.25rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+.btn-primary-home:hover {
+  background-color: #a780ff;
+}

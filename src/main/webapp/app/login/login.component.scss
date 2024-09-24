@@ -1,0 +1,43 @@
+.container-fluid {
+  width: 70%;
+  margin-block: 3rem;
+}
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+.form-control {
+  border-radius: 30px;
+  padding: 1rem 1.5rem;
+  margin-top: 0.2rem;
+}
+
+.username-label {
+  margin-top: 3rem;
+}
+
+.btn-submit {
+  padding: 0.8rem 2.5rem;
+  border-radius: 50px;
+  background-color: #5857a8;
+  margin-block: 1.5rem;
+  border: 0;
+}
+
+.btn-submit:hover {
+  background-color: #c4aff4;
+}
+
+.forgot-pass {
+  color: #111b53;
+  font-size: 16px;
+}
+
+.login-title {
+  margin-top: 5rem;
+}
+
+.hub {
+  font-weight: 700;
+}

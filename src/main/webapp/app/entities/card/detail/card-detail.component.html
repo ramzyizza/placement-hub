@@ -1,0 +1,59 @@
+<div class="container d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="card">
+      <div class="text-center">
+        <h2 data-cy="cardDetailsHeading"><span>Card</span></h2>
+      </div>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ card.id }}</span>
+        </dd>
+        <dt><span>Application Status</span></dt>
+        <dd>
+          <span>{{ card.applicationStatus }}</span>
+        </dd>
+        <dt><span>Created Date Time</span></dt>
+        <dd>
+          <span>{{ card.createdDateTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Company Name</span></dt>
+        <dd>
+          <span>{{ card.companyName }}</span>
+        </dd>
+        <dt><span>Job Title</span></dt>
+        <dd>
+          <span>{{ card.jobTitle }}</span>
+        </dd>
+        <dt><span>Job Location</span></dt>
+        <dd>
+          <span>{{ card.jobLocation }}</span>
+        </dd>
+        <dt><span>Job Duration</span></dt>
+        <dd>
+          <span>{{ card.jobDuration }}</span>
+        </dd>
+        <dt><span>App User</span></dt>
+        <dd>
+          <span>{{ card.appUser?.id }}</span>
+        </dd>
+      </dl>
+      <div class="text-center">
+        <button type="submit" (click)="previousState()" class="btn btn-info btn-submit1" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/card', card.id, 'edit']" class="btn btn-primary btn-submit2">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

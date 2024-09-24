@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notes Area</title>
+  </head>
+  <body>
+    <div class="left-column-wrapper">
+      <div class="left-column" [ngClass]="{ invisible: !leftColumnVisible }" cdkDropList [cdkDropListData]="leftColumnData">
+        <div class="title-container">
+          <div class="title">Notes</div>
+          <button class="button add-note-button" (click)="addNote()" tabindex="0">Add Note</button>
+        </div>
+        <mat-card
+          *ngFor="let document of documents; let i = index"
+          (click)="selectNoteCd(document)"
+          [class.note-selected]="selectedDocument === document"
+          [ngClass]="{ hidden: document.isHidden }"
+          tabindex="0"
+        >
+          <mat-card-content> {{ document.title }} </mat-card-content>
+          <mat-card-content>
+            {{ getCardContent(document.content) }}
+          </mat-card-content>
+
+          <button (click)="discard()" class="cross-button" style="border: none">
+            <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M3 18C2.45 18 1.97917 17.8042 1.5875 17.4125C1.19583 17.0208 1 16.55 1 16V3H0V1H5V0H11V1H16V3H15V16C15 16.55 14.8042 17.0208 14.4125 17.4125C14.0208 17.8042 13.55 18 13 18H3ZM13 3H3V16H13V3ZM5 14H7V5H5V14ZM9 14H11V5H9V14Z"
+                fill="black"
+              />
+            </svg>
+          </button>
+        </mat-card>
+      </div>
+      <button class="toggle-button" (click)="toggleLeftColumn()">
+        <svg width="14" height="15" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 11.75H11.25V20.5H8.75V11.75H0V9.25H8.75V0.5H11.25V9.25H20V11.75Z" fill="White" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="main-content" [ngClass]="{ invisible: !mainContentVisible }">
+      <div class="header">
+        <input type="text" class="title-main" [(ngModel)]="selectedDocument.title" placeholder="Document Title" maxlength="50" />
+
+        <div class="button button-container">
+          <button (click)="discard()" class="button discard-button">Discard</button>
+          <button (click)="save()" class="button save-button" [ngClass]="{ saved: isSaved }">Save</button>
+        </div>
+      </div>
+      <quill-editor [(ngModel)]="selectedDocument.content" [modules]="editorModules"></quill-editor>
+    </div>
+  </body>
+</html>

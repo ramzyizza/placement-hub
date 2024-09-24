@@ -1,0 +1,38 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305184005",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "company_posts",
+  "fields": [
+    {
+      "fieldName": "postContent",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "postImage",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "CompanyPosts",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "userCompany",
+      "otherEntityRelationshipName": "post",
+      "relationshipName": "userCompany",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

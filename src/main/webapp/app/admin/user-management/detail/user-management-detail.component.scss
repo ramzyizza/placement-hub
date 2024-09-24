@@ -1,0 +1,24 @@
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 70%;
+  }
+}
+
+.container {
+  margin-block: 4rem;
+}
+
+.btn-submit {
+  padding: 0.8rem 2.5rem;
+  border-radius: 50px;
+  background-color: #5857a8;
+  border: 0;
+}
+
+.btn-submit:hover {
+  background-color: #111b53;
+}

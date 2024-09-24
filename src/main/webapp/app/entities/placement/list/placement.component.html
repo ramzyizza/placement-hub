@@ -1,0 +1,166 @@
+<div class="container">
+  <div class="text-center">
+    <h2 id="page-heading" data-cy="PlacementHeading">
+      <h1>Placements</h1>
+
+      <div class="d-flex justify-content-center mb-5">
+        <button class="btn btn-info me-2 btn-submit1" (click)="load()" [disabled]="isLoading">
+          <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+          <span>Refresh list</span>
+        </button>
+
+        <button
+          id="jh-create-entity"
+          data-cy="entityCreateButton"
+          class="btn btn-primary jh-create-entity create-placement btn-submit2"
+          [routerLink]="['/placement/new']"
+        >
+          <fa-icon icon="plus"></fa-icon>
+          <span> Create a new Placement </span>
+        </button>
+      </div>
+    </h2>
+  </div>
+
+  <div class="d-flex justify-content-center text-center">
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+  </div>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="placements?.length === 0">
+    <span>No Placements found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="placements && placements.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="role">
+            <div class="d-flex">
+              <span>Role</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="location">
+            <div class="d-flex">
+              <span>Location</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="salary">
+            <div class="d-flex">
+              <span>Salary</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="duration">
+            <div class="d-flex">
+              <span>Duration</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="industry">
+            <div class="d-flex">
+              <span>Industry</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="about">
+            <div class="d-flex">
+              <span>About</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="jobDescription">
+            <div class="d-flex">
+              <span>Job Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="minimumQualification">
+            <div class="d-flex">
+              <span>Minimum Qualification</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="applicationDeadline">
+            <div class="d-flex">
+              <span>Application Deadline</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="link">
+            <div class="d-flex">
+              <span>Link</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="userCompany.id">
+            <div class="d-flex">
+              <span>User Company</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let placement of placements; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/placement', placement.id, 'view']">{{ placement.id }}</a>
+          </td>
+          <td>{{ placement.role }}</td>
+          <td>{{ placement.location }}</td>
+          <td>{{ placement.salary }}</td>
+          <td>{{ placement.duration }}</td>
+          <td>{{ placement.industry }}</td>
+          <td>{{ placement.about }}</td>
+          <td>{{ placement.jobDescription }}</td>
+          <td>{{ placement.minimumQualification }}</td>
+          <td>{{ placement.applicationDeadline | formatMediumDatetime }}</td>
+          <td>{{ placement.link }}</td>
+
+          <td>
+            <div *ngIf="placement.userCompany">
+              <a [routerLink]="['/user-company', placement.userCompany.id, 'view']">{{ placement.userCompany.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/placement', placement.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/placement', placement.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(placement)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

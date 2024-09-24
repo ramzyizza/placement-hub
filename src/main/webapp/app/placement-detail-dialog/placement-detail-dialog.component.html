@@ -1,0 +1,54 @@
+<div class="modal-header row">
+  <div class="col-2 logo">
+    <img
+      [src]="'data:' + placement?.userCompany?.logoContentType + ';base64,' + placement?.userCompany?.logo"
+      class="company-logo"
+      alt="Company Logo"
+    />
+  </div>
+  <div class="col-8 title">
+    <h3 class="role-title">{{ placement?.role }}</h3>
+    <h3 class="company-name">{{ placement?.userCompany?.name }}</h3>
+    <h3 class="company-location">{{ placement?.location }}</h3>
+  </div>
+  <div class="close-button" (click)="activeModal.dismiss('Cross click')">&times;</div>
+</div>
+
+<div class="modal-body">
+  <div class="row row-tile justify-content-between">
+    <div class="col-4 tile d-flex flex-column justify-content-center text-center">
+      <h3 class="tile-title">Salary</h3>
+      <h4 class="tile-content">£ {{ placement?.salary }}</h4>
+    </div>
+    <div class="col-4 tile d-flex flex-column justify-content-center text-center">
+      <h3 class="tile-title">Duration</h3>
+      <h4 class="tile-content">{{ placement?.duration }} months</h4>
+    </div>
+    <div class="col-4 tile d-flex flex-column justify-content-center text-center">
+      <h3 class="tile-title">Industry</h3>
+      <h4 class="tile-content">{{ placement?.industry }}</h4>
+    </div>
+  </div>
+
+  <div class="container">
+    <h3 class="content-title">About</h3>
+    <p class="content">{{ placement?.about }}</p>
+
+    <h3 class="content-title">Job Description</h3>
+    <p class="content">{{ placement?.jobDescription }}</p>
+
+    <h3 class="content-title">Minimum Qualification</h3>
+    <p class="content">{{ placement?.minimumQualification }}</p>
+  </div>
+</div>
+<div class="modal-footer justify-content-center d-flex">
+  <div class="row">
+    <div class="col-sm-12 d-flex justify-content-center align-items-center">
+      <p class="deadline m-0">Deadline: {{ placement?.applicationDeadline?.toDate() }}</p>
+    </div>
+    <div class="col-sm-12 d-flex justify-content-center align-items-center mt-2">
+      <button type="button" class="btn btn-secondary btn-apply mt-2 mb-3" (click)="redirectToLink()">Apply</button>
+      <!--      <button type="button" class="btn btn-secondary btn-apply mt-2 mb-3" (click)="activeModal.close('Close click')">Apply</button>-->
+    </div>
+  </div>
+</div>

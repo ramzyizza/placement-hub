@@ -1,0 +1,121 @@
+<div class="container">
+  <div class="text-center">
+    <h2 id="page-heading" data-cy="VideoHeading">
+      <h1>Videos</h1>
+
+      <div class="d-flex justify-content-center mb-5">
+        <button class="btn btn-info me-2 btn-submit1" (click)="load()" [disabled]="isLoading">
+          <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+          <span>Refresh list</span>
+        </button>
+
+        <button
+          id="jh-create-entity"
+          data-cy="entityCreateButton"
+          class="btn btn-primary jh-create-entity create-video btn-submit2"
+          [routerLink]="['/video/new']"
+        >
+          <fa-icon icon="plus"></fa-icon>
+          <span> Create a new Video </span>
+        </button>
+      </div>
+    </h2>
+  </div>
+
+  <div class="d-flex justify-content-center text-center">
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+  </div>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="videos?.length === 0">
+    <span>No Videos found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="videos && videos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="videoTitle">
+            <div class="d-flex">
+              <span>Video Title</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <div class="d-flex">
+              <span>Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="contentType">
+            <div class="d-flex">
+              <span>Content Type</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="thumbnail">
+            <div class="d-flex">
+              <span>Thumbnail</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="createdAt">
+            <div class="d-flex">
+              <span>Created At</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sourceURL">
+            <div class="d-flex">
+              <span>Source URL</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let video of videos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/video', video.id, 'view']">{{ video.id }}</a>
+          </td>
+          <td>{{ video.videoTitle }}</td>
+          <td>{{ video.description }}</td>
+          <td>{{ video.contentType }}</td>
+          <td>
+            <a *ngIf="video.thumbnail" (click)="openFile(video.thumbnail, video.thumbnailContentType)">
+              <img [src]="'data:' + video.thumbnailContentType + ';base64,' + video.thumbnail" style="max-height: 30px" alt="video image" />
+            </a>
+            <span *ngIf="video.thumbnail">{{ video.thumbnailContentType }}, {{ byteSize(video.thumbnail) }}</span>
+          </td>
+          <td>{{ video.createdAt | formatMediumDatetime }}</td>
+          <td>{{ video.sourceURL }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/video', video.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/video', video.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(video)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

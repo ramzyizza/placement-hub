@@ -1,0 +1,205 @@
+<div class="d-flex justify-content-center container mb-5">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <div class="text-center mb-3">
+        <h2 id="jhi-event-heading" data-cy="EventCreateUpdateHeading">Create or edit a Event</h2>
+      </div>
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null" [hidden]="true">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_eventName">Event Name</label>
+          <input type="text" class="form-control" name="eventName" id="field_eventName" data-cy="eventName" formControlName="eventName" />
+          <div *ngIf="editForm.get('eventName')!.invalid && (editForm.get('eventName')!.dirty || editForm.get('eventName')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('eventName')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_eventDescription">Event Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="eventDescription"
+            id="field_eventDescription"
+            data-cy="eventDescription"
+            formControlName="eventDescription"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_eventColor">Event Color</label>
+          <select class="form-control" name="eventColor" formControlName="eventColor" id="field_eventColor" data-cy="eventColor">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let option of colorOptions" [ngValue]="option.key">
+              {{ option.value }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_eventType">Event Type</label>
+          <select class="form-control" name="eventType" formControlName="eventType" id="field_eventType" data-cy="eventType">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let option of eventTypeOptions" [ngValue]="option.key">
+              {{ option.value }}
+            </option>
+          </select>
+
+          <div *ngIf="editForm.get('eventType')!.invalid && (editForm.get('eventType')!.dirty || editForm.get('eventType')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('eventType')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_eventStart">Event Start</label>
+          <div class="d-flex">
+            <input
+              id="field_eventStart"
+              data-cy="eventStart"
+              type="datetime-local"
+              class="form-control"
+              name="eventStart"
+              formControlName="eventStart"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('eventStart')!.invalid && (editForm.get('eventStart')!.dirty || editForm.get('eventStart')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('eventStart')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('eventStart')?.errors?.datetimelocal">
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_eventEnd">Event End</label>
+          <div class="d-flex">
+            <input
+              id="field_eventEnd"
+              data-cy="eventEnd"
+              type="datetime-local"
+              class="form-control"
+              name="eventEnd"
+              formControlName="eventEnd"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('eventEnd')!.invalid && (editForm.get('eventEnd')!.dirty || editForm.get('eventEnd')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('eventEnd')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('eventEnd')?.errors?.datetimelocal">
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3" [hidden]="true">
+          <label class="form-label" for="field_eventRepeat">Event Repeat</label>
+          <select class="form-control" name="eventRepeat" formControlName="eventRepeat" id="field_eventRepeat" data-cy="eventRepeat">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let option of repeatTypeOptions" [ngValue]="option.key" [selected]="option.key === 'NA'">
+              {{ option.value }}
+            </option>
+          </select>
+
+          <div *ngIf="editForm.get('eventRepeat')!.invalid && (editForm.get('eventRepeat')!.dirty || editForm.get('eventRepeat')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('eventRepeat')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_eventLocation">Event Location</label>
+          <input
+            type="text"
+            class="form-control"
+            name="eventLocation"
+            id="field_eventLocation"
+            data-cy="eventLocation"
+            formControlName="eventLocation"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_appUser">App User</label>
+          <select
+            class="form-control"
+            id="field_appUser"
+            data-cy="appUser"
+            name="appUser"
+            formControlName="appUser"
+            [compareWith]="compareUser"
+            required="true"
+          >
+            <option [ngValue]="null">Select a user</option>
+            <option [ngValue]="userOption" *ngFor="let userOption of usersSharedCollection">
+              {{ userOption.login ? userOption.login : 'No Login Provided' }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('appUser')!.invalid && (editForm.get('appUser')!.dirty || editForm.get('appUser')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('appUser')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_calendar">Calendar</label>
+          <select
+            class="form-control"
+            id="field_calendar"
+            data-cy="calendar"
+            name="calendar"
+            formControlName="calendar"
+            [compareWith]="compareCalendar"
+            required="true"
+          >
+            <option [ngValue]="calendarOption" *ngFor="let calendarOption of calendarsSharedCollection">
+              {{ calendarOption.calendarName }}
+            </option>
+          </select>
+
+          <div *ngIf="editForm.get('calendar')!.invalid && (editForm.get('calendar')!.dirty || editForm.get('calendar')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('calendar')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <div>
+          <button
+            type="button"
+            id="cancel-save"
+            data-cy="entityCreateCancelButton"
+            class="btn btn-secondary btn-submit1"
+            (click)="previousState()"
+          >
+            <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+          </button>
+
+          <button
+            type="submit"
+            id="save-entity"
+            data-cy="entityCreateSaveButton"
+            [disabled]="editForm.invalid || isSaving"
+            class="btn btn-primary btn-submit2"
+          >
+            <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+          </button>
+
+          <button
+            type="button"
+            id="delete-entity"
+            data-cy="entityCreateDeleteButton"
+            class="btn btn-secondary btn-submit3"
+            (click)="deleteEvent()"
+            [hidden]="checkNew()"
+          >
+            <fa-icon icon="ban"></fa-icon>&nbsp;<span>Delete</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+.container-fluid {
+  width: 70%;
+  margin-bottom: 3rem;
+}
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+.warn-top {
+  margin-top: 5rem;
+  margin-bottom: 1rem;
+}
+
+.warn-bottom {
+  margin-bottom: 20rem;
+}
+
+.warn {
+  margin-top: 5rem;
+  margin-bottom: 20rem;
+}
+
+.form-control {
+  border-radius: 30px;
+  padding: 1rem 1.5rem;
+  margin-block: 0.2rem 0.5rem;
+}
+
+.btn-submit {
+  padding: 0.8rem 2.5rem;
+  border-radius: 50px;
+  background-color: #5857a8;
+  margin-block: 1.5rem;
+  border: 0;
+}
+
+.btn-submit:hover {
+  background-color: #c4aff4;
+}
+
+.register-title {
+  margin-top: 5rem;
+  margin-bottom: 2rem;
+}
+
+.container {
+  width: 70%;
+}
+
+@media (min-width: 1250px) {
+  .container-fluid {
+    padding-inline: 12rem;
+  }
+}
+
+.alert-link {
+  color: #111b53;
+}
+
+.sign-in {
+  font-size: 16px;
+  padding-bottom: 1rem;
+}
+
+.text-box {
+  background-color: #f3f3f3;
+  padding: 1.5rem 2rem;
+  border-radius: 20px;
+}
+
+.hub {
+  font-weight: 700;
+}

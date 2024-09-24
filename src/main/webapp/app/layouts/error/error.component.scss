@@ -1,0 +1,55 @@
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  margin-top: 5rem;
+  font-weight: 500;
+  font-size: 72px;
+}
+
+h4 {
+  color: #253858;
+  margin-bottom: 0.8rem;
+  position: relative;
+  font-size: 1.5rem;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  color: rgb(113, 120, 126);
+  font-family: 'Lato', sans-serif;
+}
+
+.btn-submit {
+  padding: 0.8rem 2.5rem;
+  border-radius: 50px;
+  background-color: #5857a8;
+  margin-block: 1.5rem;
+  border: 0;
+}
+
+.btn-submit:hover {
+  background-color: #c4aff4;
+}
+
+.error-content {
+  padding: 0 0 70px;
+}
+.error-text {
+  text-align: center;
+  background-color: white;
+}
+.error {
+  font-size: 180px;
+  font-weight: 100;
+}
+
+.container {
+  margin-block: 7.5rem;
+}

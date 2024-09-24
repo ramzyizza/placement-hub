@@ -1,0 +1,152 @@
+<!-- User Consent Modal -->
+<ng-template #userConsentModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">User Consent Required</h4>
+  </div>
+  <div class="modal-body">
+    <p class="modal-p">We use cookies to improve your experience on our site. By using our site, you agree to our use of cookies.</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary btn-modal1" (click)="modal.close('Accept click')">Consent</button>
+    <button type="button" class="btn btn-primary btn-modal2" (click)="navigateToPrivacyPolicy()">Read GDPR</button>
+  </div>
+</ng-template>
+
+<!--Main Landing Page-->
+<div class="main-hero background-img align-items-center">
+  <div class="container text-center">
+    <h4 *ngIf="userLogin" class="welcome-msg">
+      Hey <b>{{ userLogin | capitalizeFirst }}</b
+      >, Let's
+    </h4>
+    <h1 class="heading-hero heading-text1"><b>Simplify Your</b></h1>
+    <h1 class="heading-hero heading-text2"><b>Placement Journey</b></h1>
+    <h3 class="heading-subtitle">Seamless Placement Tracking and Insights at Your Fingertips</h3>
+    <div *ngIf="isLoggedIn">
+      <button
+        type="button"
+        class="btn btn-primary-home btn-primary btn-lg"
+        routerLink="tracker"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Track with Kanban
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary-home btn-secondary btn-lg"
+        routerLink="calendar-component"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Manage My Calendar
+      </button>
+    </div>
+
+    <h4 *ngIf="!isLoggedIn" class="login-msg">Login to explore more exciting features!</h4>
+
+    <div *ngIf="!isLoggedIn">
+      <button type="button" class="btn btn-primary-home btn-primary btn-lg" (click)="login()">Login</button>
+    </div>
+  </div>
+</div>
+
+<!-- Progress Dashboard -->
+<div *ngIf="isLoggedIn" class="dashboard">
+  <div class="dashboard-title">
+    <span class="dashboard-font">Progress Dashboard</span>
+  </div>
+  <div class="container-fluid text-center">
+    <span class="dashboard-subtitle">
+      See how far you've come in your application process and stay ahead in your placement preparation.
+    </span>
+    <div class="row card-stats justify-content-center overflow-hidden">
+      <div
+        *ngFor="let status of ['SUBMITTED', 'FIRST_STAGE', 'SECOND_STAGE', 'FINAL_STAGE', 'ACCEPTED', 'REJECTED']"
+        class="col col-6 col-md-4 col-xl-2 card-stats-item mb-3 pb-5"
+        [ngClass]="{
+          'card-stats-item1': status === 'SUBMITTED',
+          'card-stats-item2': status === 'FIRST_STAGE',
+          'card-stats-item3': status === 'SECOND_STAGE',
+          'card-stats-item4': status === 'FINAL_STAGE',
+          'card-stats-item5': status === 'ACCEPTED',
+          'card-stats-item6': status === 'REJECTED'
+        }"
+      >
+        <div class="pt-4 pb-2">{{ status.replace('_', ' ') }}</div>
+        <span class="stats-num">{{ getCountForStatus(status) }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--About Placement Hub-->
+<div class="about">
+  <div class="container-fluid">
+    <div class="row">
+      <div
+        class="py-5 col-xl-6 col-sm-12 d-flex flex-column justify-content-md-start justify-content-center align-items-center align-items-md-start"
+      >
+        <h2 class="about-text text-center text-md-start">About</h2>
+        <h1 class="about-subtext text-center text-md-start">Placement<b>Hub</b></h1>
+        <p class="about-par text-center text-md-start">
+          PlacementHub is a dedicated platform designed to enhance your placement application process. With integrated features like a
+          real-time tracker, an organized scheduling calendar, and expert advice through articles, this platform ensures efficient
+          management of your placements seeking journey. PlacementHub can be utilized as a supportive companion in your placement journey,
+          offering a comprehensive suite of tools for structured organization and valuable insights.
+        </p>
+        <p class="about-par text-center text-md-start">
+          To ensure inclusivity, PlacementHub prioritizes a color-blind friendly palette and dyslexia-friendly fonts. The platform is fully
+          navigable via keyboard and features resizable content, enhancing accessibility for all users. Additionally, a simple AI chatbot
+          helps students navigate through the app, making the placement process smoother and more accessible for everyone.
+        </p>
+        <button type="button" class="my-4 btn btn-secondary-home btn-secondary text-center text-md-start" routerLink="about">
+          Learn More about Us
+        </button>
+      </div>
+      <div class="col-xl-6 col-sm-12 d-flex flex-column justify-content-end align-items-center">
+        <div class="about-img"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Placement Opening -->
+<div class="placement">
+  <div class="container-fluid">
+    <div class="d-flex justify-content-center">
+      <div class="placement-text text-center">
+        <h1 class="placement-heading">Discover the Latest Opportunities</h1>
+        <p class="placement-subheading">Explore the most recent placements, updated regularly to keep you informed and engaged.</p>
+      </div>
+    </div>
+    <div class="placement-list row justify-content-center">
+      <div *ngFor="let placement of placements" class="col-sm-6 col-md-6 col-lg-6 col-xxl-3 col-12 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <img
+              *ngIf="placement.userCompany?.logo"
+              [src]="'data:' + placement.userCompany?.logoContentType + ';base64,' + placement.userCompany?.logo"
+              class="company-logo"
+              alt="Company Logo"
+            />
+            <h5 class="card-title">{{ placement.userCompany?.name }}</h5>
+            <p class="card-title role">{{ placement.role }}</p>
+            <p class="card-title location">{{ placement.location }}</p>
+            <p class="card-text duration">{{ placement.duration }} Months Placement</p>
+            <a href="#" class="btn btn-primary btn-apply" (click)="openDialog(placement.id); $event.preventDefault()">Apply</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      type="button"
+      class="btn btn-primary btn-view-more"
+      routerLink="placement-listing"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      View More Placement
+    </button>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305184004",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "card",
+  "fields": [
+    {
+      "fieldName": "applicationStatus",
+      "fieldType": "CardStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SUBMITTED,FIRST_STAGE,SECOND_STAGE,FINAL_STAGE,REJECTED,ACCEPTED"
+    },
+    {
+      "fieldName": "createdDateTime",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "companyName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "jobTitle",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "jobLocation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "jobDuration",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Card",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "user",
+      "relationshipName": "appUser",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

@@ -1,0 +1,43 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305184002",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "calendar",
+  "fields": [
+    {
+      "fieldName": "calendarName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "calendarDescription",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "calendarColor",
+      "fieldType": "Color",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "RED,ORANGE,YELLOW,GREEN,BLUE,PURPLE,PINK,OPTIONAL"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Calendar",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "event",
+      "otherEntityRelationshipName": "calendar",
+      "relationshipName": "event",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "user",
+      "relationshipName": "appUser",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

@@ -1,0 +1,157 @@
+<div class="d-flex justify-content-center container mb-5">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <div class="text-center">
+        <h2 id="jhi-card-heading" data-cy="CardCreateUpdateHeading">Create or edit a Card</h2>
+      </div>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null"></div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_applicationStatus">Application Status</label>
+          <select
+            class="form-control"
+            name="applicationStatus"
+            formControlName="applicationStatus"
+            id="field_applicationStatus"
+            data-cy="applicationStatus"
+          >
+            <option [ngValue]="null">Select status</option>
+            <option *ngFor="let option of cardStatusOptions" [ngValue]="option.value">
+              {{ option.name }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('applicationStatus')!.invalid &&
+              (editForm.get('applicationStatus')!.dirty || editForm.get('applicationStatus')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('applicationStatus')?.errors?.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_createdDateTime">Created Date Time</label>
+          <div class="d-flex">
+            <input
+              id="field_createdDateTime"
+              data-cy="createdDateTime"
+              type="datetime-local"
+              class="form-control"
+              name="createdDateTime"
+              formControlName="createdDateTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_companyName">Company Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="companyName"
+            id="field_companyName"
+            data-cy="companyName"
+            formControlName="companyName"
+          />
+          <div *ngIf="editForm.get('companyName')!.invalid && (editForm.get('companyName')!.dirty || editForm.get('companyName')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('companyName')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_jobTitle">Job Title</label>
+          <input type="text" class="form-control" name="jobTitle" id="field_jobTitle" data-cy="jobTitle" formControlName="jobTitle" />
+          <div *ngIf="editForm.get('jobTitle')!.invalid && (editForm.get('jobTitle')!.dirty || editForm.get('jobTitle')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('jobTitle')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_jobLocation">Job Location</label>
+          <input
+            type="text"
+            class="form-control"
+            name="jobLocation"
+            id="field_jobLocation"
+            data-cy="jobLocation"
+            formControlName="jobLocation"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_jobDuration">Job Duration</label>
+          <input
+            type="text"
+            class="form-control"
+            name="jobDuration"
+            id="field_jobDuration"
+            data-cy="jobDuration"
+            formControlName="jobDuration"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_appUser">App User</label>
+          <select
+            class="form-control"
+            id="field_appUser"
+            data-cy="appUser"
+            name="appUser"
+            formControlName="appUser"
+            [compareWith]="compareUser"
+            required="true"
+          >
+            <option [ngValue]="null">Select a user</option>
+            <option [ngValue]="userOption" *ngFor="let userOption of usersSharedCollection">
+              {{ userOption.login ? userOption.login : 'No Login Provided' }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('appUser')!.invalid && (editForm.get('appUser')!.dirty || editForm.get('appUser')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('appUser')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <div>
+          <button
+            type="button"
+            id="cancel-save"
+            data-cy="entityCreateCancelButton"
+            class="btn btn-secondary btn-submit1"
+            (click)="previousState()"
+          >
+            <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+          </button>
+
+          <button
+            type="submit"
+            id="save-entity"
+            data-cy="entityCreateSaveButton"
+            [disabled]="editForm.invalid || isSaving"
+            class="btn btn-primary btn-submit2"
+          >
+            <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+          </button>
+          <button
+            type="button"
+            id="delete-save"
+            data-cy="entityCreateDeleteButton"
+            class="btn btn-secondary btn-submit3"
+            (click)="deleteCard()"
+            [hidden]="checkNew()"
+          >
+            <fa-icon icon="ban"></fa-icon>&nbsp;<span>Delete</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,122 @@
+<div class="container">
+  <div class="text-center">
+    <h2 id="page-heading" data-cy="FavouriteHeading">
+      <h1>Favourites</h1>
+
+      <div class="d-flex justify-content-center mb-5">
+        <button class="btn btn-info me-2 btn-submit1" (click)="load()" [disabled]="isLoading">
+          <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+          <span>Refresh list</span>
+        </button>
+
+        <button
+          id="jh-create-entity"
+          data-cy="entityCreateButton"
+          class="btn btn-primary jh-create-entity create-favourite btn-submit2"
+          [routerLink]="['/favourite/new']"
+        >
+          <fa-icon icon="plus"></fa-icon>
+          <span> Create a new Favourite </span>
+        </button>
+      </div>
+    </h2>
+  </div>
+
+  <div class="d-flex justify-content-center text-center">
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+  </div>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="favourites?.length === 0">
+    <span>No Favourites found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="favourites && favourites.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="createdAt">
+            <div class="d-flex">
+              <span>Created At</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="appUser.id">
+            <div class="d-flex">
+              <span>App User</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="article.id">
+            <div class="d-flex">
+              <span>Article</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="video.id">
+            <div class="d-flex">
+              <span>Video</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let favourite of favourites; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/favourite', favourite.id, 'view']">{{ favourite.id }}</a>
+          </td>
+          <td>{{ favourite.createdAt | formatMediumDatetime }}</td>
+          <td>
+            {{ favourite.appUser?.id }}
+          </td>
+          <td>
+            <div *ngIf="favourite.article">
+              <a [routerLink]="['/article', favourite.article.id, 'view']">{{ favourite.article.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="favourite.video">
+              <a [routerLink]="['/video', favourite.video.id, 'view']">{{ favourite.video.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/favourite', favourite.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/favourite', favourite.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(favourite)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

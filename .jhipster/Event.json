@@ -1,0 +1,68 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305184003",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "event",
+  "fields": [
+    {
+      "fieldName": "eventName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "eventDescription",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "eventColor",
+      "fieldType": "Color",
+      "fieldValues": "RED,ORANGE,YELLOW,GREEN,BLUE,PURPLE,PINK,OPTIONAL"
+    },
+    {
+      "fieldName": "eventType",
+      "fieldType": "EventType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "NORMAL,INTERVIEW,AC"
+    },
+    {
+      "fieldName": "eventStart",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "eventEnd",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "eventRepeat",
+      "fieldType": "RepeatType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "DAILY,WEEKLY,MONTHLY,YEARLY,NA"
+    },
+    {
+      "fieldName": "eventLocation",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Event",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "user",
+      "relationshipName": "appUser",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "calendar",
+      "otherEntityRelationshipName": "event",
+      "relationshipName": "calendar",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

@@ -1,0 +1,78 @@
+<div class="container d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="placement">
+      <div class="text-center">
+        <h2 data-cy="placementDetailsHeading"><span>Placement</span></h2>
+      </div>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ placement.id }}</span>
+        </dd>
+        <dt><span>Role</span></dt>
+        <dd>
+          <span>{{ placement.role }}</span>
+        </dd>
+        <dt><span>Location</span></dt>
+        <dd>
+          <span>{{ placement.location }}</span>
+        </dd>
+        <dt><span>Salary</span></dt>
+        <dd>
+          <span>{{ placement.salary }}</span>
+        </dd>
+        <dt><span>Duration</span></dt>
+        <dd>
+          <span>{{ placement.duration }}</span>
+        </dd>
+        <dt><span>Industry</span></dt>
+        <dd>
+          <span>{{ placement.industry }}</span>
+        </dd>
+        <dt><span>About</span></dt>
+        <dd>
+          <span>{{ placement.about }}</span>
+        </dd>
+        <dt><span>Job Description</span></dt>
+        <dd>
+          <span>{{ placement.jobDescription }}</span>
+        </dd>
+        <dt><span>Minimum Qualification</span></dt>
+        <dd>
+          <span>{{ placement.minimumQualification }}</span>
+        </dd>
+        <dt><span>Application Deadline</span></dt>
+        <dd>
+          <span>{{ placement.applicationDeadline | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>User Company</span></dt>
+        <dd>
+          <div *ngIf="placement.userCompany">
+            <a [routerLink]="['/user-company', placement.userCompany.id, 'view']">{{ placement.userCompany.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Link</span></dt>
+        <dd>
+          <span>{{ placement.link }}</span>
+        </dd>
+      </dl>
+
+      <div class="text-center">
+        <button type="submit" (click)="previousState()" class="btn btn-info btn-submit1" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/placement', placement.id, 'edit']" class="btn btn-primary btn-submit2">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="container d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="article">
+      <div class="text-center">
+        <h2 data-cy="articleDetailsHeading"><span>Article</span></h2>
+      </div>
+      <hr />
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ article.id }}</span>
+        </dd>
+        <dt><span>Article Name</span></dt>
+        <dd>
+          <span>{{ article.articleName }}</span>
+        </dd>
+        <dt><span>Content Type</span></dt>
+        <dd>
+          <span>{{ article.contentType }}</span>
+        </dd>
+        <dt><span>Source Link</span></dt>
+        <dd>
+          <span>{{ article.sourceLink }}</span>
+        </dd>
+        <dt><span>Thumbnail</span></dt>
+        <dd>
+          <div *ngIf="article.thumbnail">
+            <a (click)="openFile(article.thumbnail, article.thumbnailContentType)">
+              <img
+                [src]="'data:' + article.thumbnailContentType + ';base64,' + article.thumbnail"
+                style="max-width: 100%"
+                alt="article image"
+                class="content-image d-flex"
+              />
+            </a>
+            {{ article.thumbnailContentType }}, {{ byteSize(article.thumbnail) }}
+          </div>
+        </dd>
+        <dt><span>Created At</span></dt>
+        <dd>
+          <span>{{ article.createdAt | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <div class="text-center">
+        <button type="submit" (click)="previousState()" class="btn btn-info btn-submit1" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/article', article.id, 'edit']" class="btn btn-primary btn-submit2">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

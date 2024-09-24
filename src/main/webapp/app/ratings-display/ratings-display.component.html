@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div class="bg py-5">
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-lg-7">
+            <div class="search-bar py-2">
+              <span class="logo-img"></span>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search by company, review or role"
+                [(ngModel)]="searchKeyword"
+                (keydown.enter)="searchReviews()"
+                aria-label="Search"
+              />
+              <button class="btn search-btn mx-2" type="button" (click)="searchReviews()"><i class="bi bi-search"></i>Search</button>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <div class="">
+            <a href="/ratings-form" class="btn btn-primary py-2">Add Review</a>
+          </div>
+          <p class="text-center mt-3">Showing {{ filteredReviews.length }} results out of {{ totalReviews }} available</p>
+        </div>
+
+        <div class="row">
+          <div *ngFor="let review of filteredReviews" class="col-sm-12 col-md-6 col-lg-4">
+            <div class="card-review">
+              <p class="company">{{ review.userCompany?.name ?? 'Unknown Company' }}</p>
+              <p class="rating">{{ review.rating + ' ★' }}</p>
+              <p class="reviewer">{{ review.appUser?.firstName }}</p>
+              <p class="review">
+                <i>{{ '"' + review.review + '"' }}</i>
+              </p>
+              <p class="role-static">Role</p>
+              <div class="row">
+                <div class="col">
+                  <p class="role">{{ review.role }}</p>
+                </div>
+                <div *ngIf="review.recommend == true" class="col">
+                  <p class="recommend">Recommend</p>
+                </div>
+                <div *ngIf="!review.recommend" class="col">
+                  <p class="recommend">Not Recommend</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

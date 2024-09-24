@@ -1,0 +1,127 @@
+<div class="container">
+  <div class="text-center">
+    <h2 id="page-heading" data-cy="ArticleHeading">
+      <h1>Articles</h1>
+      <div class="d-flex justify-content-center mb-5">
+        <button class="btn btn-info me-2 btn-submit1" (click)="load()" [disabled]="isLoading">
+          <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+          <span>Refresh list</span>
+        </button>
+
+        <button
+          id="jh-create-entity"
+          data-cy="entityCreateButton"
+          class="btn btn-primary jh-create-entity create-article btn-submit2"
+          [routerLink]="['/article/new']"
+        >
+          <fa-icon icon="plus"></fa-icon>
+          <span> Create a new Article </span>
+        </button>
+      </div>
+    </h2>
+  </div>
+
+  <div class="d-flex justify-content-center text-center">
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+  </div>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="articles?.length === 0">
+    <span>No Articles found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="articles && articles.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="articleName">
+            <div class="d-flex">
+              <span>Article Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="contentType">
+            <div class="d-flex">
+              <span>Content Type</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sourceLink">
+            <div class="d-flex">
+              <span>Source Link</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="thumbnail">
+            <div class="d-flex">
+              <span>Thumbnail</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="createdAt">
+            <div class="d-flex">
+              <span>Created At</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let article of articles; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/article', article.id, 'view']">{{ article.id }}</a>
+          </td>
+          <td>{{ article.articleName }}</td>
+          <td>{{ article.contentType }}</td>
+          <td>{{ article.sourceLink }}</td>
+          <td>
+            <a *ngIf="article.thumbnail" (click)="openFile(article.thumbnail, article.thumbnailContentType)">
+              <img
+                [src]="'data:' + article.thumbnailContentType + ';base64,' + article.thumbnail"
+                style="max-height: 30px"
+                alt="article image"
+              />
+            </a>
+            <span *ngIf="article.thumbnail">{{ article.thumbnailContentType }}, {{ byteSize(article.thumbnail) }}</span>
+          </td>
+          <td>{{ article.createdAt | formatMediumDatetime }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/article', article.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/article', article.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(article)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

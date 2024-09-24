@@ -1,0 +1,61 @@
+<div class="container d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="review">
+      <div class="text-center">
+        <h2 data-cy="reviewDetailsHeading"><span>Review</span></h2>
+      </div>
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ review.id }}</span>
+        </dd>
+        <!--        <dt><span>Company Name</span></dt>-->
+        <!--        <dd>-->
+        <!--          <span>{{ review.companyName }}</span>-->
+        <!--        </dd>-->
+        <dt><span>Role</span></dt>
+        <dd>
+          <span>{{ review.role }}</span>
+        </dd>
+        <dt><span>Rating</span></dt>
+        <dd>
+          <span>{{ review.rating }}</span>
+        </dd>
+        <dt><span>Review</span></dt>
+        <dd>
+          <span>{{ review.review }}</span>
+        </dd>
+        <dt><span>Recommend</span></dt>
+        <dd>
+          <span>{{ review.recommend }}</span>
+        </dd>
+        <dt><span>App User</span></dt>
+        <dd>
+          <span>{{ review.appUser?.id }}</span>
+        </dd>
+        <dt><span>User Company</span></dt>
+        <dd>
+          <div *ngIf="review.userCompany">
+            <a [routerLink]="['/user-company', review.userCompany.id, 'view']">{{ review.userCompany.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <div class="text-center">
+        <button type="submit" (click)="previousState()" class="btn btn-info btn-submit1" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/review', review.id, 'edit']" class="btn btn-primary btn-submit2">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

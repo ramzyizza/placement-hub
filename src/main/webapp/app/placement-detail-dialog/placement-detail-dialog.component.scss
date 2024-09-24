@@ -1,0 +1,168 @@
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+.company-logo {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  vertical-align: middle;
+  background-size: contain;
+  margin-bottom: 5px;
+}
+
+.modal-header {
+  background-color: #5857a8;
+  color: white;
+}
+
+.role-title,
+.company-name,
+.company-location {
+  margin-bottom: 0.25rem;
+}
+
+.deadline {
+  text-align: center;
+}
+
+.role-title {
+  font-size: 2.25rem;
+  font-weight: 600;
+  margin-top: 0;
+}
+
+.company-name {
+  font-size: 1.35rem;
+  font-weight: 400;
+  position: relative;
+  top: -3px;
+}
+
+.company-location {
+  font-style: italic;
+  font-size: 1rem;
+  font-weight: 300;
+  position: relative;
+  top: -5px;
+}
+
+.row {
+  padding: 2rem;
+  margin: 0;
+}
+
+.logo {
+  background-color: white;
+  padding: 2rem;
+  width: 96px;
+  border-radius: 30px;
+}
+
+.title {
+  position: relative;
+  right: 2.5rem;
+  padding: 0;
+  margin-left: 1rem;
+}
+
+.close-button {
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background-color: #c67ff1;
+}
+
+.close-button:hover {
+  opacity: 1;
+}
+
+.tile {
+  background-color: #c67ff1;
+  border-radius: 25px;
+  padding: 0;
+  width: 32%;
+  color: white;
+  height: 7rem;
+}
+
+.tile-content {
+  font-weight: 500;
+  font-size: 22px;
+}
+
+.tile-title {
+  font-size: 12px;
+  position: relative;
+  top: 8px;
+  font-style: italic;
+}
+
+.container {
+  padding-inline: 2rem;
+}
+
+.content {
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+
+.content-title {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.btn-apply {
+  border-radius: 30px;
+  background-color: #5857a8;
+  width: 100%;
+  max-width: 150px;
+}
+
+.modal-footer .row {
+  padding: 0;
+}
+
+@media (max-width: 992px) {
+  .role-title {
+    font-size: 20px;
+  }
+
+  .company-logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .logo {
+    background-color: white;
+    padding: 1.25rem;
+    width: 68px;
+    border-radius: 20px;
+  }
+
+  .title {
+    position: relative;
+    right: -0.5rem;
+    padding: 0;
+    margin-left: 0rem;
+  }
+
+  .tile-content {
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  .tile-title {
+    font-size: 12px;
+    position: relative;
+    top: 8px;
+    font-style: italic;
+  }
+}

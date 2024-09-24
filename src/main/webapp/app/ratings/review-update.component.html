@@ -1,0 +1,118 @@
+<div class="d-flex justify-content-center container">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <div class="text-center">
+        <h2 id="jhi-review-heading" data-cy="ReviewCreateUpdateHeading">Create or edit a Review</h2>
+      </div>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_role">Role</label>
+          <input type="text" class="form-control" name="role" id="field_role" data-cy="role" formControlName="role" />
+          <div *ngIf="editForm.get('role')!.invalid && (editForm.get('role')!.dirty || editForm.get('role')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('role')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_rating">Rating</label>
+          <input type="number" class="form-control" name="rating" id="field_rating" data-cy="rating" formControlName="rating" />
+          <div *ngIf="editForm.get('rating')!.invalid && (editForm.get('rating')!.dirty || editForm.get('rating')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('rating')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('rating')?.errors?.number"> This field should be a number. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_review">Review</label>
+          <input type="text" class="form-control" name="review" id="field_review" data-cy="review" formControlName="review" />
+          <div *ngIf="editForm.get('review')!.invalid && (editForm.get('review')!.dirty || editForm.get('review')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('review')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_appUser">App User</label>
+          <select
+            class="form-control"
+            id="field_appUser"
+            data-cy="appUser"
+            name="appUser"
+            formControlName="appUser"
+            [compareWith]="compareUser"
+          >
+            <option [ngValue]="null">Select a user</option>
+            <option [ngValue]="userOption" *ngFor="let userOption of usersSharedCollection">
+              {{ userOption.login ? userOption.login : 'No Login Provided' }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_userCompany">User Company</label>
+          <select
+            class="form-control"
+            id="field_userCompany"
+            data-cy="userCompany"
+            name="userCompany"
+            formControlName="userCompany"
+            [compareWith]="compareUserCompany"
+          >
+            <option [ngValue]="null">Select a company</option>
+            <option [ngValue]="userCompanyOption" *ngFor="let userCompanyOption of userCompaniesSharedCollection">
+              {{ userCompanyOption.name ? userCompanyOption.name : 'Unknown Company' }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-auto">
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="field_recommend"
+                data-cy="recommend"
+                name="recommend"
+                formControlName="recommend"
+              />
+              <label class="form-check-label" for="field_recommend">Recommend</label>
+            </div>
+            <div *ngIf="editForm.get('recommend')!.invalid && (editForm.get('recommend')!.dirty || editForm.get('recommend')!.touched)">
+              <small class="form-text text-danger" *ngIf="editForm.get('recommend')?.errors?.required">This field is required.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button
+          type="button"
+          id="cancel-save"
+          data-cy="entityCreateCancelButton"
+          class="btn btn-secondary btn-submit1"
+          (click)="previousState()"
+        >
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary btn-submit2"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="placement">
+  <div class="container-fluid">
+    <div class="column justify-content-center">
+      <div *ngFor="let placement of placements" class="placementssss">
+        <div class="card">
+          <div class="card-body">
+            <img
+              *ngIf="placement.userCompany?.logo"
+              [src]="'data:' + placement.userCompany?.logoContentType + ';base64,' + placement.userCompany?.logo"
+              class="company-logo"
+              alt="Company Logo"
+            />
+            <h5 class="card-title">{{ placement.userCompany?.name }}</h5>
+            <p class="card-title role">{{ placement.role }}</p>
+            <p class="card-title location">{{ placement.location }}</p>
+            <p class="card-text duration">{{ placement.duration }} Months Placement</p>
+            <a href="#" class="btn btn-primary btn-apply" (click)="openDialog(placement.id); $event.preventDefault()">Apply</a>
+            <a href="#" class="btn btn-primary btn-delete" (click)="deleteDialog(placement); $event.preventDefault()">Delete</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

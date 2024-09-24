@@ -1,0 +1,54 @@
+<div class="main-hero background-img align-items-center">
+  <div class="container text-center hero">
+    <h1 class="heading-hero mt-5"><b>Discover the Latest Opportunities</b></h1>
+    <h3 class="heading-subtitle my-1">
+      Explore the most recent placements and internships, updated regularly to keep you informed and engaged.
+    </h3>
+    <div class="container my-5">
+      <div class="row justify-content-center search-placeholder">
+        <div class="col-md-8">
+          <div class="search-bar py-3">
+            <span class="logo-img"></span>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="searchKeyword"
+              (keydown.enter)="searchPlacements()"
+              placeholder="Search by role or company"
+              aria-label="Search"
+            />
+            <button class="btn search-btn mx-3" type="button" (click)="searchPlacements()"><i class="bi bi-search"></i> Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p *ngIf="placements.length > 0" class="text-center text-result">
+      Showing {{ displayedPlacementsCount }} result(s) out of {{ totalAvailablePlacements }} total placements
+    </p>
+    <p *ngIf="placements.length === 0" class="text-center text-result">No results found!</p>
+  </div>
+</div>
+
+<div class="placement">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div *ngFor="let placement of placements" class="col-sm-6 col-md-6 col-lg-6 col-xxl-3 col-12 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <img
+              *ngIf="placement.userCompany?.logo"
+              [src]="'data:' + placement.userCompany?.logoContentType + ';base64,' + placement.userCompany?.logo"
+              class="company-logo"
+              alt="Company Logo"
+            />
+            <h5 class="card-title">{{ placement.userCompany?.name }}</h5>
+            <p class="card-title role">{{ placement.role }}</p>
+            <p class="card-title location">{{ placement.location }}</p>
+            <p class="card-text duration">{{ placement.duration }} Months Placement</p>
+            <a href="#" class="btn btn-primary btn-apply" (click)="openDialog(placement.id); $event.preventDefault()">Apply</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div>
+  <div class="d-flex justify-content-center activate">
+    <div class="col-md-8 py-5 container">
+      <h1 class="text-center my-4">Account Activation</h1>
+
+      <div class="alert alert-success" *ngIf="success">
+        <span
+          ><span><strong>Your user account has been activated.</strong> Please </span>
+          <a class="alert-link" routerLink="/login">sign in</a>.</span
+        >
+      </div>
+
+      <div class="alert alert-danger" *ngIf="error">
+        <strong>Your user could not be activated.</strong> Please use the registration form to sign up.
+      </div>
+    </div>
+  </div>
+</div>

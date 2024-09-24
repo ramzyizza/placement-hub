@@ -1,0 +1,142 @@
+<div class="d-flex justify-content-center container">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <div class="text-center">
+        <h2 id="jhi-video-heading" data-cy="VideoCreateUpdateHeading">Create or edit a Video</h2>
+      </div>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_videoTitle">Video Title</label>
+          <input
+            type="text"
+            class="form-control"
+            name="videoTitle"
+            id="field_videoTitle"
+            data-cy="videoTitle"
+            formControlName="videoTitle"
+          />
+          <div *ngIf="editForm.get('videoTitle')!.invalid && (editForm.get('videoTitle')!.dirty || editForm.get('videoTitle')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('videoTitle')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_contentType">Content Type</label>
+          <select class="form-control" name="contentType" formControlName="contentType" id="field_contentType" data-cy="contentType">
+            <option [ngValue]="null">Select one</option>
+            <option *ngFor="let option of contentTypeOptions" [ngValue]="option.key">
+              {{ option.value }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_thumbnail">Thumbnail</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('thumbnailContentType')!.value + ';base64,' + editForm.get('thumbnail')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('thumbnail')!.value"
+              alt="video image"
+            />
+            <div *ngIf="editForm.get('thumbnail')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('thumbnailContentType')!.value }}, {{ byteSize(editForm.get('thumbnail')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('thumbnail', 'thumbnailContentType', 'file_thumbnail')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input type="file" id="file_thumbnail" data-cy="thumbnail" (change)="setFileData($event, 'thumbnail', true)" accept="image/*" />
+          </div>
+          <input type="hidden" class="form-control" name="thumbnail" id="field_thumbnail" data-cy="thumbnail" formControlName="thumbnail" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="thumbnailContentType"
+            id="field_thumbnailContentType"
+            formControlName="thumbnailContentType"
+          />
+          <div *ngIf="editForm.get('thumbnail')!.invalid && (editForm.get('thumbnail')!.dirty || editForm.get('thumbnail')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('thumbnail')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_createdAt">Created At</label>
+          <div class="d-flex">
+            <input
+              id="field_createdAt"
+              data-cy="createdAt"
+              type="datetime-local"
+              class="form-control"
+              name="createdAt"
+              formControlName="createdAt"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('createdAt')!.invalid && (editForm.get('createdAt')!.dirty || editForm.get('createdAt')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('createdAt')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('createdAt')?.errors?.datetimelocal">
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_sourceURL">Source URL</label>
+          <input type="text" class="form-control" name="sourceURL" id="field_sourceURL" data-cy="sourceURL" formControlName="sourceURL" />
+          <div *ngIf="editForm.get('sourceURL')!.invalid && (editForm.get('sourceURL')!.dirty || editForm.get('sourceURL')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('sourceURL')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button
+          type="button"
+          id="cancel-save"
+          data-cy="entityCreateCancelButton"
+          class="btn btn-secondary btn-submit1"
+          (click)="previousState()"
+        >
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary btn-submit2"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

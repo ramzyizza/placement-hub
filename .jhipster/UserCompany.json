@@ -1,0 +1,73 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305184001",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "user_company",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "logo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "profileImageBackground",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "companySize",
+      "fieldType": "CompanySize",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "LESS_THAN_500,BETWEEN_500_AND_1000,BETWEEN_1001_AND_5000,BETWEEN_5001_AND_10000,MORE_THAN_10000"
+    },
+    {
+      "fieldName": "industry",
+      "fieldType": "Industry",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Agriculture,Aerospace,Media_and_News,Healthcare,Hospitality,Technology,Economic,Construction,Entertainment,Transportation,Mining,Telecommunication,Manufacture,Electronics,Education,Energy,Pharmaceutical,Computer_Industry,Retail,Chemicals,Food_Service"
+    },
+    {
+      "fieldName": "totalLocation",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "UserCompany",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "user",
+      "ownerSide": true,
+      "relationshipName": "appUser",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "companyPosts",
+      "otherEntityRelationshipName": "userCompany",
+      "relationshipName": "post",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "placement",
+      "otherEntityRelationshipName": "userCompany",
+      "relationshipName": "job",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "review",
+      "otherEntityRelationshipName": "userCompany",
+      "relationshipName": "review",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

@@ -1,0 +1,38 @@
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+.hub {
+  font-weight: 700;
+}
+
+.container {
+  margin-block: 4rem;
+}
+
+.btn-submit {
+  padding: 0.8rem 2.5rem;
+  border-radius: 50px;
+  background-color: #5857a8;
+  border: 0;
+}
+
+.btn-submit:hover {
+  background-color: #111b53;
+}
+
+.btn-submit2 {
+  padding: 0.8rem 2.5rem;
+  border-radius: 50px;
+  background-color: #c4aff4;
+  border: 0;
+}
+
+.btn-submit2:hover {
+  background-color: #b89cff;
+}
+
+.btn-sm {
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+}

@@ -1,0 +1,145 @@
+<div class="aa">
+  <div class="container-fluid hero-section">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-12 col-md-6 responsive-text">
+        <h2 class="display-4 text-hero-1">Suitable Workplace</h2>
+        <h1 class="text-hero-2">Just For You</h1>
+        <p class="desc-hero">
+          Fitting in a work environment is just as important as the job itself. Discover our users past experience to find what’s best for
+          you.
+        </p>
+        <a href="/ratings-form" class="btn share-experience" role="button" aria-disabled="true">Share Experience</a>
+      </div>
+      <div class="col-12 col-md-6 hero-image"></div>
+    </div>
+  </div>
+
+  <div class="card-company">
+    <h3 class="justify-content-center d-flex discover-text">Discover Top Rated Companies</h3>
+    <div class="search justify-content-center align-items-center d-flex">
+      <div class="search-bar py-3">
+        <span class="logo-img"></span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="searchKeyword"
+          (keydown.enter)="searchCompanies()"
+          placeholder="Search Companies"
+          aria-label="Search"
+        />
+        <button class="btn search-btn mx-3" type="button" (click)="searchCompanies()"><i class="bi bi-search"></i> Search</button>
+      </div>
+    </div>
+    <p class="text-center mt-3">Showing {{ companies.length }} companies out of {{ allCompanies.length }} available</p>
+  </div>
+
+  <div class="container-sm notif my-5">
+    <div *ngIf="companies.length > 0"></div>
+    <div *ngIf="companies.length === 0" class="alert alert-warning">
+      <span>No companies found</span>
+    </div>
+  </div>
+
+  <div class="container-xl">
+    <div class="row rating-card">
+      <div *ngFor="let company of companies" class="col-sm-12 col-md-4 individual-card">
+        <div class="company-info d-flex align-items-center">
+          <img
+            *ngIf="company.logo"
+            [src]="'data:' + company?.logoContentType + ';base64,' + company.logo"
+            class="company-logo-img"
+            alt="Company Logo"
+          />
+          <div class="company-name-rating">
+            <p class="company-name">{{ company.name }}</p>
+            <p class="rating">{{ getRating(company.id) }}</p>
+          </div>
+        </div>
+
+        <div class="row company-stats">
+          <div class="col-4 reviews">
+            <p class="aggregate-review">{{ reviewsCountMap[company.id] | number }}</p>
+            <p class="review-static">Reviews</p>
+          </div>
+
+          <div class="col-4 recommends">
+            <p class="aggregate-recommend">{{ recommendationsCountMap[company.id] | number }}</p>
+            <p class="recommend-static">Recommends</p>
+          </div>
+
+          <div class="col-4 location">
+            <p class="aggregate-location">{{ company.totalLocation }}</p>
+            <p class="location-static">Locations</p>
+          </div>
+        </div>
+
+        <div class="row company-info">
+          <div class="col industry">
+            <p
+              class="text-center industry-static justify-content-center align-items-center d-flex"
+              style="font-size: 1.1rem; font-weight: 600; position: relative; top: 2px"
+            >
+              Industry
+            </p>
+            <p
+              class="text-center industry-fetch justify-content-center align-items-center d-flex"
+              style="font-size: 0.8rem; font-weight: 400; position: relative; top: -2px"
+            >
+              {{ company.industry ? formatIndustry(company.industry) : 'Industry Not Available' }}
+            </p>
+          </div>
+
+          <div class="col company-size">
+            <p
+              class="text-center company-size-static justify-content-center align-items-center d-flex"
+              style="font-size: 1.1rem; font-weight: 600; position: relative; top: 2px"
+            >
+              Company Size
+            </p>
+            <p
+              class="text-center employee-size justify-content-center align-items-center d-flex"
+              style="font-size: 0.8rem; font-weight: 400; position: relative; top: -2px"
+            >
+              {{ getCompanySizeLabel(company.companySize) }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="background d-flex justify-content-center" style="background-color: #314585">
+    <div class="container latest-review">
+      <h3 class="justify-content-center d-flex review-head-text">Fresh Off The Press</h3>
+      <div class="row">
+        <div *ngFor="let review of displayReviews" class="col-sm-12 col-md-6 col-lg-4">
+          <div class="card-review">
+            <p class="company">{{ review.userCompany?.name ?? 'Unknown Company' }}</p>
+            <p class="rating">{{ review.rating + ' ★' }}</p>
+            <p class="reviewer">{{ review.appUser?.firstName }}</p>
+            <p class="review">
+              <i>{{ '"' + review.review + '"' }}</i>
+            </p>
+            <p class="role-static">Role</p>
+            <div class="row">
+              <div class="col">
+                <p class="role">{{ review.role }}</p>
+              </div>
+
+              <div *ngIf="review.recommend == true" class="col">
+                <p class="recommend">Recommend</p>
+              </div>
+              <div *ngIf="!review.recommend" class="col">
+                <p class="recommend">Not Recommend</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container text-center mt-3 mb-5">
+          <a href="/ratings-all" class="btn view-more" role="button" aria-disabled="true">View More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

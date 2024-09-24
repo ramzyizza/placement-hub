@@ -1,0 +1,48 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305184006",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "article",
+  "fields": [
+    {
+      "fieldName": "articleName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "contentType",
+      "fieldType": "ContentType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "AGRICULTURE,CONSTRUCTION,HEALTHCARE,TECHNOLOGY,FINANCE,ENTERTAINMENT,TRANSPORT,MEDIA,ENGINEERING,PHARMACEUTICAL,RETAIL,CHEMICAL,INTERVIEW,ASSESSMENT,LAW"
+    },
+    {
+      "fieldName": "sourceLink",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "thumbnail",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Article",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "favourite",
+      "otherEntityRelationshipName": "article",
+      "relationshipName": "favourites",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

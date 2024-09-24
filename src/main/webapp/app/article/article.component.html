@@ -1,0 +1,346 @@
+<body xmlns="http://www.w3.org/1999/html">
+  <!--Article Landing Page-->
+  <!--Article Landing Page-->
+  <div class="main-hero background-img align-items-center">
+    <div class="container text-center">
+      <h1 class="heading-hero heading-text1"><b>Articles and Videos</b></h1>
+      <p></p>
+      <h3 class="heading-subtitle">Expert advice on interviews, stress management and company research</h3>
+    </div>
+    <!--iframe src="../../content/stored_articles/CV Lecture - Copy.html" width="900" height="900" ></iframe-->
+  </div>
+  <!--Article Landing Page-->
+  <!--Article Landing Page-->
+
+  <!--Article Dropdown START-->
+  <!--Article Dropdown START-->
+  <div class="content-grid">
+    <div class="row">
+      <div class="col">
+        <div class="d-flex bd-highlight mb-3">
+          <div class="p-2 bd-highlight">
+            <div class="dropdown">
+              <button class="bttn">
+                <img class="dropdownImgFave" src="../../content/images/star-svgrepo-com.svg" alt="star" /><span class="full-text">
+                  Favourites &#x25BC;</span
+                ><span class="short-text">&#x25BC;</span>
+              </button>
+              <div class="content">
+                <div *ngFor="let stringValue of favesImg; let i = index" class="contentDrop">
+                  <button class="apply_bttn" (click)="openFave(i)">{{ favesName[i] }}</button>
+                  <div class="contentDrop-content">
+                    <img src="data:image/png;base64,{{ stringValue }}" alt="Thumbnail" />
+                    <p>{{ favesName[i] }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ms-auto p-2 bd-highlight">
+            <div class="dropdown">
+              <button class="bttn">
+                <span class="full-text">&#9776; Filter subjects &#x25BC;</span><span class="short-text">&#9776; &#x25BC;</span>
+              </button>
+              <div class="cont">
+                <div class="alignRight">
+                  <label><input type="checkbox" [(ngModel)]="checkbox1" /> Interviews</label>
+                  <label><input type="checkbox" [(ngModel)]="checkbox2" /> Assessments</label>
+                  <label><input type="checkbox" [(ngModel)]="checkbox3" /> Technology</label>
+                  <label><input type="checkbox" [(ngModel)]="checkbox4" /> Law</label>
+                  <label><input type="checkbox" [(ngModel)]="checkbox5" /> Engineering</label>
+                </div>
+                <button class="alignContent apply_bttn" (click)="checkedCheckboxCount()">Apply filter</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Article Dropdown END-->
+  <!--Article Dropdown END-->
+
+  <!--Article Cards Start-->
+  <!--Article Cards Start-->
+  <div class="container filter">
+    <h2 class="article-heading"><b>Interviews</b></h2>
+    <!--CHANGE WITH NEW SECTION-->
+    <div class="article-container">
+      <div
+        class="contain supersede"
+        *ngFor="let content of combinedContentI; let i = index"
+        [class.item-0]="i === 0"
+        [class.item-1]="i === 1"
+        [class.item-2]="i === 2"
+        [class.item-3]="i === 3"
+        #section1
+      >
+        <!--CHANGE ABOVE WITH NEW SECTION-->
+        <div class="card" style="width: 18rem">
+          <!--div *ngFor="let fave of favouriteSec3; let x = index"-->
+          <ng-container *ngIf="content.type === 'article'">
+            <!-- Render article -->
+            <img class="card-img-top" src="data:image/png;base64,{{ content.thumbnail }}" alt="Thumbnail" />
+            <div class="card-body">
+              <button (click)="debouncedSetFave(i)" class="faveBtn" [innerHTML]="favouriteBtn[i]"></button>
+              <!--CHANGE ABOVE WITH NEW SECTION-->
+              <!--button (click)="setFave(i)" class="faveBtn" [innerHTML]="favouriteBtn[i]"></button-->
+              <h5 class="card-title">{{ content.articleName }}</h5>
+              <p class="card-text">
+                Click 'View' to delve into the article. Explore new perspectives and enrich your understanding with just one tap!
+              </p>
+              <button (click)="articleOn(i, 'INTERVIEW')" class="hvrbtn btn btn-primary border-0">View</button>
+              <!--CHANGE ABOVE WITH NEW SECTION-->
+            </div>
+          </ng-container>
+          <ng-container *ngIf="content.type === 'video'">
+            <!-- Render video -->
+            <img class="card-img-top" src="data:image/png;base64,{{ content.thumbnail }}" alt="Thumbnail" />
+            <div class="card-body">
+              <h5 class="card-title">{{ content.videoTitle }}</h5>
+              <!--button>{{ favouriteSec3[i] }}</button-->
+              <button (click)="debouncedSetFave(i)" class="faveBtn" [innerHTML]="favouriteBtn[i]"></button>
+              <!--CHANGE ABOVE WITH NEW SECTION-->
+              <p class="card-text">{{ content.description }}</p>
+              <button (click)="videoOn(i, 'INTERVIEW')" class="hvrbtn btn btn-primary border-0">Play</button>
+              <!--CHANGE ABOVE WITH NEW SECTION-->
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="btnPosContainer">
+          <button (click)="shiftLeft('1')" class="hvrbtn btnPosPrev btn btn-primary border-0">&#10094;</button>
+          <button (click)="shiftRight('1')" class="hvrbtn btnPosNext btn btn-primary border-0">&#10095;</button>
+          <!--CHANGE ABOVE WITH NEW SECTION-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Article Cards 2-->
+  <!--Article Cards 2-->
+  <!--Article Cards 2-->
+  <div class="container filter">
+    <h2 class="article-heading"><b>Assessments</b></h2>
+    <div class="article-container">
+      <div
+        class="contain supersede"
+        *ngFor="let content of combinedContentA; let i = index"
+        [class.item-0]="i === 0"
+        [class.item-1]="i === 1"
+        [class.item-2]="i === 2"
+        [class.item-3]="i === 3"
+        #section2
+      >
+        <div class="card" style="width: 18rem">
+          <ng-container *ngIf="content.type === 'article'">
+            <img class="card-img-top" src="data:image/png;base64,{{ content.thumbnail }}" alt="Thumbnail" />
+            <div class="card-body">
+              <h5 class="card-title">{{ content.articleName }}</h5>
+              <button (click)="debouncedSetFave(i + 4)" class="faveBtn" [innerHTML]="favouriteBtn[i + 4]"></button>
+
+              <p class="card-text">
+                Click 'View' to delve into the article. Explore new perspectives and enrich your understanding with just one tap!
+              </p>
+              <button (click)="articleOn(i, 'ASSESSMENT')" class="hvrbtn btn btn-primary border-0">View</button>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="content.type === 'video'">
+            <img class="card-img-top" src="data:image/png;base64,{{ content.thumbnail }}" alt="Thumbnail" />
+            <div class="card-body">
+              <h5 class="card-title">{{ content.videoTitle }}</h5>
+              <button (click)="debouncedSetFave(i + 4)" class="faveBtn" [innerHTML]="favouriteBtn[i + 4]"></button>
+              <p class="card-text">{{ content.description }}</p>
+              <button (click)="videoOn(i, 'ASSESSMENT')" class="hvrbtn btn btn-primary border-0">Play</button>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="btnPosContainer">
+          <button (click)="shiftLeft('2')" class="hvrbtn btnPosPrev btn btn-primary border-0">&#10094;</button>
+          <button (click)="shiftRight('2')" class="hvrbtn btnPosNext btn btn-primary border-0">&#10095;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Article Cards 3-->
+  <!--Article Cards 3-->
+  <!--Article Cards 3-->
+  <div class="container filter">
+    <h2 class="article-heading"><b>Technology</b></h2>
+    <div class="article-container">
+      <div
+        class="contain supersede"
+        *ngFor="let content of combinedContentT; let i = index"
+        [class.item-0]="i === 0"
+        [class.item-1]="i === 1"
+        [class.item-2]="i === 2"
+        [class.item-3]="i === 3"
+        #section3
+      >
+        <div class="card" style="width: 18rem">
+          <ng-container *ngIf="content.type === 'article'">
+            <img class="card-img-top" src="data:image/png;base64,{{ content.thumbnail }}" alt="Thumbnail" />
+            <div class="card-body">
+              <h5 class="card-title">{{ content.articleName }}</h5>
+              <button (click)="debouncedSetFave(i + 8)" class="faveBtn" [innerHTML]="favouriteBtn[i + 8]"></button>
+
+              <p class="card-text">
+                Click 'View' to delve into the article. Explore new perspectives and enrich your understanding with just one tap!
+              </p>
+              <button (click)="articleOn(i, 'TECHNOLOGY')" class="hvrbtn btn btn-primary border-0">View</button>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="content.type === 'video'">
+            <img class="card-img-top" src="data:image/png;base64,{{ content.thumbnail }}" alt="Thumbnail" />
+            <div class="card-body">
+              <h5 class="card-title">{{ content.videoTitle }}</h5>
+              <button (click)="debouncedSetFave(i + 8)" class="faveBtn" [innerHTML]="favouriteBtn[i + 8]"></button>
+              <p class="card-text">{{ content.description }}</p>
+              <button (click)="videoOn(i, 'TECHNOLOGY')" class="hvrbtn btn btn-primary border-0">Play</button>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="btnPosContainer">
+          <button (click)="shiftLeft('3')" class="hvrbtn btnPosPrev btn btn-primary border-0">&#10094;</button>
+          <button (click)="shiftRight('3')" class="hvrbtn btnPosNext btn btn-primary border-0">&#10095;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Article Cards 4-->
+  <!--Article Cards 4-->
+  <!--Article Cards 4-->
+  <div class="container filter">
+    <h2 class="article-heading"><b>law</b></h2>
+    <div class="article-container">
+      <div
+        class="contain supersede"
+        *ngFor="let content of combinedContentL; let i = index"
+        [class.item-0]="i === 0"
+        [class.item-1]="i === 1"
+        [class.item-2]="i === 2"
+        [class.item-3]="i === 3"
+        #section4
+      >
+        <div class="card" style="width: 18rem">
+          <ng-container *ngIf="content.type === 'article'">
+            <img class="card-img-top" src="data:image/png;base64,{{ content.thumbnail }}" alt="Thumbnail" />
+            <div class="card-body">
+              <h5 class="card-title">{{ content.articleName }}</h5>
+              <button (click)="debouncedSetFave(i + 12)" class="faveBtn" [innerHTML]="favouriteBtn[i + 12]"></button>
+
+              <p class="card-text">
+                Click 'View' to delve into the article. Explore new perspectives and enrich your understanding with just one tap!
+              </p>
+              <button (click)="articleOn(i, 'LAW')" class="hvrbtn btn btn-primary border-0">View</button>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="content.type === 'video'">
+            <img class="card-img-top" src="data:image/png;base64,{{ content.thumbnail }}" alt="Thumbnail" />
+            <div class="card-body">
+              <h5 class="card-title">{{ content.videoTitle }}</h5>
+              <button (click)="debouncedSetFave(i + 12)" class="faveBtn" [innerHTML]="favouriteBtn[i + 12]"></button>
+              <p class="card-text">{{ content.description }}</p>
+              <button (click)="videoOn(i, 'LAW')" class="hvrbtn btn btn-primary border-0">Play</button>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="btnPosContainer">
+          <button (click)="shiftLeft('4')" class="hvrbtn btnPosPrev btn btn-primary border-0">&#10094;</button>
+          <button (click)="shiftRight('4')" class="hvrbtn btnPosNext btn btn-primary border-0">&#10095;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Article Cards 5-->
+  <!--Article Cards 5-->
+  <!--Article Cards 5-->
+  <div class="container filter">
+    <h2 class="article-heading"><b>Engineering</b></h2>
+    <div class="article-container">
+      <div
+        class="contain supersede"
+        *ngFor="let content of combinedContentE; let i = index"
+        [class.item-0]="i === 0"
+        [class.item-1]="i === 1"
+        [class.item-2]="i === 2"
+        [class.item-3]="i === 3"
+        #section5
+      >
+        <div class="card" style="width: 18rem">
+          <ng-container *ngIf="content.type === 'article'">
+            <img class="card-img-top" src="data:image/png;base64,{{ content.thumbnail }}" alt="Thumbnail" />
+            <div class="card-body">
+              <h5 class="card-title">{{ content.articleName }}</h5>
+              <button (click)="debouncedSetFave(i + 16)" class="faveBtn" [innerHTML]="favouriteBtn[i + 16]"></button>
+
+              <p class="card-text">
+                Click 'View' to delve into the article. Explore new perspectives and enrich your understanding with just one tap!
+              </p>
+              <button (click)="articleOn(i, 'ENGINEERING')" class="hvrbtn btn btn-primary border-0">View</button>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="content.type === 'video'">
+            <img class="card-img-top" src="data:image/png;base64,{{ content.thumbnail }}" alt="Thumbnail" />
+            <div class="card-body">
+              <h5 class="card-title">{{ content.videoTitle }}</h5>
+              <button (click)="debouncedSetFave(i + 16)" class="faveBtn" [innerHTML]="favouriteBtn[i + 16]"></button>
+              <p class="card-text">{{ content.description }}</p>
+              <button (click)="videoOn(i, 'ENGINEERING')" class="hvrbtn btn btn-primary border-0">Play</button>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="btnPosContainer">
+          <button (click)="shiftLeft('5')" class="hvrbtn btnPosPrev btn btn-primary border-0">&#10094;</button>
+          <button (click)="shiftRight('5')" class="hvrbtn btnPosNext btn btn-primary border-0">&#10095;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Article Cards End-->
+  <!--Article Cards End-->
+
+  <!--Article Cards Overlay-->
+  <!--Article Cards Overlay-->
+  <div class="overlayArticle" (click)="articleOff()">
+    <div class="overlayPos">
+      <!--embed [src]="sanitizeUrl(overlay)" type="application/pdf" width="100%" height="100%" /-->
+      <iframe [src]="sanitizeUrl(overlay)" frameborder="0" [width]="articleWidth" [height]="articleHeight"></iframe>
+      <!--ngx-extended-pdf-viewer  [src]="overlay"></ngx-extended-pdf-viewer-->
+    </div>
+  </div>
+
+  <div class="overlayVideo" (click)="videoOff()">
+    <div class="overlayPos">
+      <div class="responsive-iframe-container">
+        <iframe
+          [width]="iframeWidth"
+          [height]="iframeHeight"
+          [src]="sanitizeUrl(overlay)"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</body>

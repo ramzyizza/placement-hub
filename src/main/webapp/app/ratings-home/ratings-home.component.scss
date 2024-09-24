@@ -1,0 +1,423 @@
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+.hero-section {
+  margin-top: 3rem;
+}
+
+.text-hero-1 {
+  font-weight: 700;
+  color: #314585;
+  font-size: 4rem;
+  letter-spacing: -3px;
+}
+
+.text-hero-2 {
+  font-weight: 700;
+  color: #c67ff1;
+  font-size: 6rem;
+  letter-spacing: -3px;
+  position: relative;
+  top: -2rem;
+}
+
+.share-experience {
+  color: #ffffff;
+  background-color: #c67ff1;
+  border-radius: 1.875rem;
+  padding: 0.8rem 2.25rem;
+  position: relative;
+  margin-top: 0.1rem;
+  font-size: 1.25rem;
+}
+
+.view-more {
+  color: #ffffff;
+  background-color: #7c67c5;
+  border-radius: 1.875rem;
+  padding: 0.8rem 2.25rem;
+  position: relative;
+  margin-top: 0.1rem;
+  font-size: 1.25rem;
+}
+
+.desc-hero {
+  color: #314585;
+  letter-spacing: 1px;
+  position: relative;
+  top: -2rem;
+  padding-right: 3rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+  width: 80%;
+}
+
+.hero-image {
+  background: url('../../content/images/hero-ratings.png') center center;
+  background-size: cover;
+
+  height: 351px;
+  width: 287px;
+  margin-left: 3rem;
+}
+
+.search-bar {
+  margin-top: 1rem;
+  position: relative;
+  border-radius: 90px;
+  background: #f1f1f1;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  display: flex;
+  width: 77%;
+}
+
+.notif {
+  width: 30%;
+}
+
+.search-bar .form-control {
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding-left: 1rem;
+  font-size: 1.15rem;
+  background-color: #f1f1f1;
+}
+
+.search-bar .btn.search-btn {
+  position: absolute;
+  right: 2px;
+  border: none;
+  border-radius: 100px;
+  margin-right: 1rem;
+  background-color: #c67ff1;
+  color: white;
+  padding: 0.75rem 1.75rem;
+  box-shadow: none;
+  transition: background-color 0.3s;
+}
+
+.search-bar .btn.search-btn:hover {
+  background-color: #cf90f8;
+}
+
+.form-control::placeholder {
+  font-size: 1rem;
+  color: #797979;
+  font-family: 'Roboto', sans-serif;
+}
+
+.logo-img {
+  height: 1rem;
+  width: 1rem;
+  margin-left: 2rem;
+  display: inline-block;
+  vertical-align: middle;
+  background: url('../../content/images/search-icon.png') no-repeat center center;
+  background-size: contain;
+}
+
+.card-company {
+  margin-top: 2rem;
+  padding-inline: 7rem;
+}
+
+.discover-text {
+  color: #314585;
+  font-weight: 600;
+  font-size: 2.5rem;
+  margin-top: 4rem;
+}
+
+.rating-card {
+  margin-block: 2rem;
+}
+
+.rating-card {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.individual-card {
+  background-color: #f4f4f4;
+  border-radius: 1.8rem;
+  margin: 0.75rem;
+  padding: 1rem 1.5rem;
+  transition: box-shadow 0.5s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0);
+  &:hover {
+    box-shadow: 0 4px 6px rgba(0, 0.3, 0.3, 0.3);
+  }
+
+  @media (min-width: 768px) {
+    flex: 0 0 calc(25% - 1.5rem);
+    max-width: calc(25% - 1.5rem);
+  }
+}
+
+.company-logo-img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+  border-radius: 15px;
+}
+
+.company-name-rating {
+  margin-left: 10px;
+}
+
+.company-name-rating p {
+  font-weight: 500;
+  margin: 0;
+  object-fit: fill;
+}
+
+.company-name {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.rating {
+  color: #314585;
+  font-size: 1.1rem;
+  position: relative;
+  top: -4px;
+}
+
+.company-stats p {
+  color: #ffffff;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin-block: 0.5rem;
+}
+
+.aggregate-review,
+.aggregate-recommend,
+.aggregate-location {
+  font-weight: 500;
+  font-size: 1.75rem;
+  letter-spacing: 1px;
+  position: relative;
+  bottom: -3px;
+}
+
+.review-static,
+.recommend-static,
+.location-static {
+  position: relative;
+  top: -10px;
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.reviews,
+.recommends,
+.location {
+  width: calc((100% / 3) - 10px);
+  margin: 0 5px;
+  box-sizing: border-box;
+  padding: 0.3rem;
+  background-color: #314585;
+  border-radius: 1rem;
+}
+
+.company-info {
+  position: relative;
+  margin-bottom: 0.75rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+.industry-static,
+.company-size-static {
+  color: #314585;
+  position: relative;
+  margin: 0.5rem 0 0;
+}
+
+.industry p,
+.company-size p {
+  margin-bottom: 0;
+}
+
+.industry,
+.company-size {
+  font-size: 1.5rem;
+  margin-top: 0;
+}
+
+@media (max-width: 768px) {
+  .responsive-text,
+  .discover-text {
+    text-align: center;
+  }
+
+  .desc-hero {
+    padding: 0 2rem 0 2rem;
+  }
+
+  .search-bar .btn.search-btn {
+    padding: 0.5rem 1.25rem;
+  }
+
+  .card-company {
+    padding-inline: 3rem;
+  }
+
+  .individual-card {
+    margin: 0.5rem;
+    width: 100%;
+  }
+
+  .share-experience {
+    position: relative;
+    top: -1.5rem;
+  }
+
+  .aggregate-review,
+  .aggregate-recommend,
+  .aggregate-location {
+    font-size: 1.25rem;
+  }
+
+  .review-static,
+  .recommend-static,
+  .location-static {
+    font-size: 0.6rem;
+  }
+
+  .reviews,
+  .recommends,
+  .location {
+    width: 75%;
+    margin: 0.3rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .company-stats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 992px) {
+  .hero-image {
+    height: 234px;
+    width: 191px;
+  }
+
+  .text-hero-1 {
+    font-size: 3rem;
+  }
+
+  .text-hero-2 {
+    font-size: 4.5rem;
+  }
+
+  .desc-hero {
+    font-size: 1.15rem;
+    width: 100%;
+  }
+
+  .individual-card {
+    width: 65%;
+    margin: 0.3rem;
+  }
+
+  .search-bar {
+    width: 90%;
+  }
+
+  .individual-card {
+    flex: 0 0 calc(50% - 1rem);
+    max-width: calc(50% - 1rem);
+  }
+}
+
+.review-head-text {
+  color: #ffffff;
+  padding-top: 3rem;
+  font-weight: 500;
+  font-size: 2.5rem;
+}
+
+.card-review {
+  color: #000000;
+  background-color: #f4f4f4;
+  border-radius: 1.75rem;
+  padding: 2rem;
+  margin: 1rem 0.5rem 1rem 1rem;
+  font-size: 0.9rem;
+  height: 18rem;
+}
+
+.company {
+  font-weight: 600;
+  font-size: 1.75rem;
+  margin-bottom: 0;
+}
+
+.rating {
+  font-weight: 500;
+  color: #314585;
+}
+
+.reviewer {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #314585;
+  margin-bottom: 0;
+}
+
+.review {
+  height: 3rem;
+  overflow: auto;
+}
+
+.role-static {
+  padding: 0;
+  margin-bottom: 0;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.role,
+.recommend {
+  font-size: 1.25rem;
+  overflow: hidden;
+}
+
+.review {
+  font-size: 1.1rem;
+  font-style: italic;
+}
+
+.recommend::before {
+  content: none; /* Removes content that might be creating a circle */
+}
+
+.recommend {
+  text-align: end;
+  font-style: italic;
+  font-weight: 500;
+  color: #314585;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+.latest-review {
+  margin: 0 3rem 0 3rem;
+}

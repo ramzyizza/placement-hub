@@ -1,0 +1,125 @@
+<div class="container">
+  <div class="text-center">
+    <h2 id="page-heading" data-cy="CompanyPostsHeading">
+      <h1>Company Posts</h1>
+
+      <div class="d-flex justify-content-center mb-5">
+        <button class="btn btn-info me-2 btn-submit1" (click)="load()" [disabled]="isLoading">
+          <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+          <span>Refresh list</span>
+        </button>
+
+        <button
+          id="jh-create-entity"
+          data-cy="entityCreateButton"
+          class="btn btn-primary jh-create-entity create-company-posts btn-submit2"
+          [routerLink]="['/company-posts/new']"
+        >
+          <fa-icon icon="plus"></fa-icon>
+          <span> Create a new Company Posts </span>
+        </button>
+      </div>
+    </h2>
+  </div>
+
+  <div class="d-flex justify-content-center text-center">
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+  </div>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="companyPosts?.length === 0">
+    <span>No Company Posts found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="companyPosts && companyPosts.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="postContent">
+            <div class="d-flex">
+              <span>Post Content</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="postImage">
+            <div class="d-flex">
+              <span>Post Image</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="createdAt">
+            <div class="d-flex">
+              <span>Created At</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="userCompany.id">
+            <div class="d-flex">
+              <span>User Company</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let companyPosts of companyPosts; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/company-posts', companyPosts.id, 'view']">{{ companyPosts.id }}</a>
+          </td>
+          <td>{{ companyPosts.postContent }}</td>
+          <td>
+            <a *ngIf="companyPosts.postImage" (click)="openFile(companyPosts.postImage, companyPosts.postImageContentType)">
+              <img
+                [src]="'data:' + companyPosts.postImageContentType + ';base64,' + companyPosts.postImage"
+                style="max-height: 30px"
+                alt="companyPosts image"
+              />
+            </a>
+            <span *ngIf="companyPosts.postImage">{{ companyPosts.postImageContentType }}, {{ byteSize(companyPosts.postImage) }}</span>
+          </td>
+          <td>{{ companyPosts.createdAt | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="companyPosts.userCompany">
+              <a [routerLink]="['/user-company', companyPosts.userCompany.id, 'view']">{{ companyPosts.userCompany.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/company-posts', companyPosts.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/company-posts', companyPosts.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(companyPosts)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

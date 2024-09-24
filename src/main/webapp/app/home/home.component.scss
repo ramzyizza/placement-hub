@@ -1,0 +1,489 @@
+/* ==========================================================================
+Main page styles
+========================================================================== */
+
+.hipster {
+  display: inline-block;
+  width: 347px;
+  height: 497px;
+  background-size: contain;
+}
+
+/* wait autoprefixer update to allow simple generation of high pixel density media query */
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (-moz-min-device-pixel-ratio: 2),
+  only screen and (-o-min-device-pixel-ratio: 2/1),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
+  .hipster {
+    background-size: contain;
+  }
+}
+
+.container {
+  max-width: 95%;
+}
+
+.heading-hero {
+  font-size: 58px;
+  font-weight: 900;
+  font-family: Roboto, sans-serif;
+  margin: 0;
+}
+
+.close {
+  border: 0;
+  border-radius: 3rem;
+  background-color: #ff6961;
+  color: white;
+  width: 2rem;
+  height: 2rem;
+}
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+.modal-p {
+  font-size: 1.25rem;
+}
+
+.modal-title {
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.btn-modal1 {
+  border-radius: 30px;
+  background-color: #c4aff4;
+  border: 0;
+  padding: 0.75rem 1.5rem;
+}
+
+.btn-modal2 {
+  border-radius: 30px;
+  background-color: #5857a8;
+  border: 0;
+  padding: 0.75rem 1.5rem;
+}
+
+.welcome-msg {
+  color: white;
+  font-weight: 400;
+  position: relative;
+  top: 0.75rem;
+}
+
+.login-msg {
+  color: white;
+  font-weight: 400;
+  margin: 1rem;
+}
+
+.heading-text1 {
+  color: white;
+}
+
+.heading-text2 {
+  color: #c4aff4;
+  font-size: 68px;
+  position: relative;
+  top: -1.25rem;
+}
+
+.container-fluid {
+  padding: 0px;
+  width: 80%;
+}
+
+.main-hero {
+  height: 28rem;
+  display: flex;
+  align-items: center;
+}
+
+.container-hero {
+  margin-block: 2rem;
+}
+
+.heading-subtitle {
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+  top: -1.5rem;
+}
+
+.background-img {
+  background: url('../../content/images/main-background.png') no-repeat center center;
+  background-size: cover;
+  max-width: inherit;
+}
+
+.btn-primary-home {
+  background-color: #c4aff4;
+  border: 0;
+  border-radius: 100px;
+  padding: 1rem 2rem;
+  margin-inline: 0.25rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+.btn-primary-home:hover {
+  background-color: #a780ff;
+}
+
+.btn-secondary-home {
+  background-color: #5857a8;
+  border: 0;
+  border-radius: 100px;
+  padding: 1rem 2rem;
+  margin-inline: 0.25rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+.btn-secondary-home:hover {
+  background-color: #111b53;
+}
+
+.dashboard-title {
+  width: fit-content;
+  background-color: #111b53;
+  color: white;
+  padding: 0.8rem 4rem;
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  position: relative;
+  top: -2.5rem;
+  margin: 0 auto;
+}
+
+.dashboard-font {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+}
+
+.dashboard-subtitle {
+  font-family: 'Roboto', sans-serif;
+  font-size: 24px;
+  color: #111b53;
+}
+
+.card-stats {
+  padding-block: 3rem;
+}
+
+.card-stats-item {
+  padding: 0;
+  margin-inline: 10px;
+  border-radius: 30px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.card:hover {
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.card-stats-item1 {
+  background-color: #e3d7ff;
+  transition: box-shadow 0.3s ease;
+}
+
+.card-stats-item1:hover {
+  background-color: #e3d7ff;
+  box-shadow: 0px 0px 20px 10px rgba(227, 215, 255, 0.5);
+}
+
+.card-stats-item2 {
+  background-color: #fbfbe5;
+  transition: box-shadow 0.3s ease;
+}
+
+.card-stats-item2:hover {
+  background-color: #fbfbe5;
+  box-shadow: 0px 0px 20px 10px rgba(251, 251, 229, 0.5);
+}
+
+.card-stats-item3 {
+  background-color: #e5eefb;
+  transition: box-shadow 0.3s ease;
+}
+
+.card-stats-item3:hover {
+  background-color: #e5eefb;
+  box-shadow: 0px 0px 20px 10px rgba(229, 238, 251, 0.5);
+}
+
+.card-stats-item4 {
+  background-color: #e5fbf7;
+  transition: box-shadow 0.3s ease;
+}
+
+.card-stats-item4:hover {
+  background-color: #e5fbf7;
+  box-shadow: 0px 0px 20px 10px rgba(229, 251, 247, 0.5);
+}
+
+.card-stats-item5 {
+  background-color: #e9fbe5;
+  transition: box-shadow 0.3s ease;
+}
+
+.card-stats-item5:hover {
+  background-color: #e9fbe5;
+  box-shadow: 0px 0px 20px 10px rgba(233, 251, 229, 0.5);
+}
+
+.card-stats-item6 {
+  background-color: #fbe5e5;
+  transition: box-shadow 0.3s ease;
+}
+
+.card-stats-item6:hover {
+  background-color: #fbe5e5;
+  box-shadow: 0px 0px 20px 10px rgba(251, 229, 229, 0.5);
+}
+
+.stats-num {
+  font-size: 90px;
+  font-weight: 300;
+}
+
+.dashboard {
+  padding-bottom: 4rem;
+}
+
+.extra-note {
+  opacity: 0.5;
+  margin-bottom: 2rem;
+}
+
+.placement {
+  background-color: #314585;
+  font-family: 'Roboto', sans-serif;
+  padding-bottom: 3rem;
+}
+
+.placement-heading {
+  padding-top: 3rem;
+  font-weight: 700;
+}
+
+.placement-subheading {
+  font-size: 24px;
+  font-weight: 200;
+  position: relative;
+  top: -0.5rem;
+}
+
+.placement-list {
+  margin-top: 2rem;
+}
+
+.placement-text {
+  width: 80%;
+  color: white;
+}
+
+.container-placement {
+  width: 90%;
+}
+
+.card {
+  border-radius: 25px;
+  border: 0;
+  font-family: 'Roboto', sans-serif;
+  padding-inline: 1.5rem;
+  padding-block: 2rem 0.5rem;
+  transition: box-shadow 0.5s ease;
+}
+
+.company-name {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.role {
+  position: relative;
+  top: -10px;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.duration {
+  position: relative;
+  top: -20px;
+  font-size: 18px;
+}
+
+.company-logo {
+  height: 40px;
+  display: inline-block;
+  vertical-align: middle;
+  background-size: contain;
+  margin-bottom: 1rem;
+}
+
+.location {
+  color: #8a8a8a;
+  font-weight: 300;
+  font-size: 16px;
+  position: relative;
+  top: -20px;
+}
+
+.btn-apply {
+  background-color: #7c67c5;
+  border: 0;
+  border-radius: 20px;
+  padding: 0.8rem 2.5rem;
+  position: relative;
+  top: -5px;
+  display: block;
+  margin: 0 auto;
+}
+
+.btn-view-more {
+  background-color: #c67ff1;
+  border: 0;
+  border-radius: 50px;
+  padding: 1rem 3.5rem;
+  display: block;
+  position: relative;
+  top: -5px;
+  margin-top: 2rem;
+  margin-inline: auto;
+  font-size: 16px;
+}
+
+.btn-view-more:hover {
+  background-color: #e3beff;
+  color: #59488c;
+}
+
+.btn-apply:hover {
+  background-color: #59488c;
+}
+
+.card-text {
+  margin: 0;
+}
+
+.about {
+  background-color: #e2b6ff;
+  color: #3d3d3d;
+  letter-spacing: -0.07rem;
+}
+
+.about-text {
+  position: relative;
+  top: 10px;
+}
+
+.about-subtext {
+  font-weight: 400;
+}
+
+.about-par {
+  letter-spacing: -0.02rem;
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.about-img {
+  background: url('../../content/images/about-person.png') center center;
+  background-size: cover;
+  height: 41rem;
+  width: 30rem;
+  position: relative;
+  right: -1.5rem;
+}
+
+.info {
+  color: white;
+  font-size: 1.25rem;
+  letter-spacing: -0.02rem;
+  font-style: italic;
+}
+
+@media (max-width: 992px) {
+  .main-hero {
+    height: 36rem;
+  }
+
+  .heading-text2 {
+    font-size: 50px;
+    line-height: 0.8;
+    top: 0;
+    margin-bottom: 2.5rem;
+  }
+
+  .heading-text1 {
+    font-size: 45px;
+  }
+
+  .placement-subheading {
+    top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-hero {
+    height: 30rem;
+  }
+
+  .btn-primary-home {
+    margin-bottom: 10px;
+  }
+
+  .btn-secondary-home {
+    margin-bottom: 10px;
+  }
+
+  .about-img {
+    height: 30rem;
+    width: 22rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .main-hero {
+    height: 34rem;
+  }
+
+  .dashboard-title .dashboard-font {
+    font-size: 26px;
+  }
+
+  .placement-subheading {
+    font-size: 20px;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 90%;
+    position: static;
+    top: 0;
+  }
+
+  .placement-heading {
+    font-size: 36px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .card-stats-item {
+    width: 30%;
+  }
+}
+
+@media (min-width: 1466px) {
+  .card-stats-item {
+    width: 15%;
+  }
+}

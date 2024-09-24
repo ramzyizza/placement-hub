@@ -1,0 +1,71 @@
+<div class="container d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="event">
+      <div class="text-center">
+        <h2 data-cy="eventDetailsHeading"><span>Event</span></h2>
+      </div>
+      <hr />
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ event.id }}</span>
+        </dd>
+        <dt><span>Event Name</span></dt>
+        <dd>
+          <span>{{ event.eventName }}</span>
+        </dd>
+        <dt><span>Event Description</span></dt>
+        <dd>
+          <span>{{ event.eventDescription }}</span>
+        </dd>
+        <dt><span>Event Color</span></dt>
+        <dd>
+          <span>{{ event.eventColor }}</span>
+        </dd>
+        <dt><span>Event Type</span></dt>
+        <dd>
+          <span>{{ event.eventType }}</span>
+        </dd>
+        <dt><span>Event Start</span></dt>
+        <dd>
+          <span>{{ event.eventStart | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Event End</span></dt>
+        <dd>
+          <span>{{ event.eventEnd | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Event Repeat</span></dt>
+        <dd>
+          <span>{{ event.eventRepeat }}</span>
+        </dd>
+        <dt><span>Event Location</span></dt>
+        <dd>
+          <span>{{ event.eventLocation }}</span>
+        </dd>
+        <dt><span>App User</span></dt>
+        <dd>
+          <span>{{ event.appUser?.id }}</span>
+        </dd>
+        <dt><span>Calendar</span></dt>
+        <dd>
+          <div *ngIf="event.calendar">
+            <a [routerLink]="['/calendar', event.calendar.id, 'view']">{{ event.calendar.id }}</a>
+          </div>
+        </dd>
+      </dl>
+      <div class="text-center">
+        <button type="submit" (click)="previousState()" class="btn btn-info btn-submit1" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/event', event.id, 'edit']" class="btn btn-primary btn-submit2">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

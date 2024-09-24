@@ -1,0 +1,145 @@
+.btn-modal1 {
+  border-radius: 30px;
+  background-color: #c4aff4;
+  border: 0;
+  padding: 0.75rem 1.5rem;
+}
+
+.btn-modal2 {
+  border-radius: 30px;
+  background-color: #5857a8;
+  border: 0;
+  padding: 0.75rem 1.5rem;
+}
+
+.btn-delete {
+  background-color: darkred;
+  color: white;
+}
+
+.container-fluid {
+  padding: 0px;
+  width: 80%;
+}
+
+.form-control::placeholder {
+  font-size: 1.15rem;
+  color: #797979;
+  font-family: 'Roboto', sans-serif;
+}
+
+@media (max-width: 992px) {
+  .hero {
+    margin-top: 3rem;
+  }
+
+  .heading-hero {
+    font-size: 36px;
+  }
+
+  .heading-subtitle {
+    font-size: 20px;
+  }
+
+  .form-control::placeholder {
+    font-size: 1rem;
+  }
+
+  .search-bar .btn.search-btn {
+    padding: 0.5rem 2rem;
+  }
+
+  .text-result {
+    margin-bottom: 6rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .search-bar .btn.search-btn {
+    padding: 0.5rem 1rem;
+  }
+}
+
+.placement {
+  background-color: #f8f8f8;
+  font-family: 'Roboto', sans-serif;
+  padding-block: 3rem;
+}
+
+.container-placement {
+  width: 90%;
+}
+
+.card {
+  border-radius: 25px;
+  border: 0;
+  font-family: 'Roboto', sans-serif;
+  padding-inline: 1.5rem;
+  padding-block: 2rem 0.5rem;
+  transition: box-shadow 0.5s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.company-name {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.role {
+  position: relative;
+  top: -10px;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.duration {
+  position: relative;
+  top: -20px;
+  font-size: 18px;
+}
+
+.company-logo {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  vertical-align: middle;
+  background-size: contain;
+  margin-bottom: 5px;
+}
+
+.location {
+  color: #8a8a8a;
+  font-weight: 300;
+  font-size: 16px;
+  position: relative;
+  top: -20px;
+}
+
+.btn-apply {
+  background-color: #7c67c5;
+  border: 0;
+  border-radius: 20px;
+  padding: 0.8rem 2.5rem;
+  position: relative;
+  top: -5px;
+  display: block;
+  margin: 0 auto;
+}
+
+.btn-apply:hover {
+  background-color: #59488c;
+}
+
+.card:hover {
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.text-result {
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+.card {
+  margin-bottom: 50px;
+}

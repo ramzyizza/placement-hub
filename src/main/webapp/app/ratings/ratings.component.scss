@@ -1,0 +1,146 @@
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  color: #314585;
+  text-align: left;
+  font-weight: 500;
+  word-spacing: -3px;
+}
+
+.container {
+  margin-block: 3rem;
+  width: 75%;
+}
+
+.form-control-review {
+  border: 0;
+}
+
+.form-field {
+  background-color: #f1f1f1;
+  border: 0;
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  height: 2.5rem;
+  padding: 1rem 1rem;
+}
+
+.form-control {
+  display: block;
+  padding: 1rem 1.5rem;
+  color: #495057;
+  background-color: #f1f1f1;
+  border-radius: 5rem;
+  border: 0;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.button-otp {
+  background-color: #f1f1f1;
+  color: #797979;
+  opacity: 100%;
+  font-weight: 500;
+  border: 0;
+  border-radius: 0 0.5rem 0.5rem 0;
+  height: 2.5rem;
+  padding-right: 0.5rem;
+}
+
+.form-label {
+  color: #000000;
+  opacity: 50%;
+  font-weight: 500;
+}
+
+.form-field::placeholder {
+  opacity: 75%;
+}
+
+.form-control::placeholder {
+  color: #949494;
+}
+
+.submit-button {
+  padding: 0.75rem 2rem;
+  background-color: #c67ff1;
+  border: 0;
+  border-radius: 30px;
+  color: #ffffff;
+}
+
+.recommend {
+  color: #000000;
+  opacity: 50%;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.form-field-checkbox {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+.form-field-review {
+  background-color: #f1f1f1;
+  border: 0;
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 2rem;
+  height: 7rem;
+  padding: 1rem 1rem;
+}
+
+.hide {
+  display: none;
+}
+
+.clear {
+  clear: both;
+}
+
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  text-align: end;
+  position: relative;
+}
+
+.rating > label {
+  display: inline-block;
+  padding: 0;
+  cursor: pointer;
+  font-size: 2.5rem;
+  color: #c7c7c7;
+  position: relative;
+}
+
+.rating > label:hover,
+.rating > label:hover ~ label,
+.rating > input.radio-btn:checked ~ label {
+  color: #ffd700;
+}
+
+.rating > input.radio-btn:checked ~ label:before {
+  content: '\2605';
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.btn-submit1 {
+  padding: 0.75rem 2rem;
+  background-color: #c4aff4;
+  border: 0;
+  border-radius: 30px;
+}
+
+.btn-submit2 {
+  padding: 0.75rem 2rem;
+  background-color: #5857a8;
+  border: 0;
+  border-radius: 30px;
+  margin-left: 0.25rem;
+}

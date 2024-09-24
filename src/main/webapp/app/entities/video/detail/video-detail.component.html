@@ -1,0 +1,66 @@
+<div class="container d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="video">
+      <div class="text-center">
+        <h2 data-cy="videoDetailsHeading"><span>Video</span></h2>
+      </div>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ video.id }}</span>
+        </dd>
+        <dt><span>Video Title</span></dt>
+        <dd>
+          <span>{{ video.videoTitle }}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+          <span>{{ video.description }}</span>
+        </dd>
+        <dt><span>Content Type</span></dt>
+        <dd>
+          <span>{{ video.contentType }}</span>
+        </dd>
+        <dt><span>Thumbnail</span></dt>
+        <dd>
+          <div *ngIf="video.thumbnail">
+            <a (click)="openFile(video.thumbnail, video.thumbnailContentType)">
+              <img
+                [src]="'data:' + video.thumbnailContentType + ';base64,' + video.thumbnail"
+                style="max-width: 100%"
+                alt="video image"
+                class="content-image d-flex"
+              />
+            </a>
+            {{ video.thumbnailContentType }}, {{ byteSize(video.thumbnail) }}
+          </div>
+        </dd>
+        <dt><span>Created At</span></dt>
+        <dd>
+          <span>{{ video.createdAt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Source URL</span></dt>
+        <dd>
+          <span>{{ video.sourceURL }}</span>
+        </dd>
+      </dl>
+
+      <div class="text-center">
+        <button type="submit" (click)="previousState()" class="btn btn-info btn-submit1" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/video', video.id, 'edit']" class="btn btn-primary btn-submit2">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

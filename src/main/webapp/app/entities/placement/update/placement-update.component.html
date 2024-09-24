@@ -1,0 +1,189 @@
+<div class="d-flex justify-content-center container">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <div class="text-center">
+        <h2 id="jhi-placement-heading" data-cy="PlacementCreateUpdateHeading">Create or edit a Placement</h2>
+      </div>
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_role">Role</label>
+          <input type="text" class="form-control" name="role" id="field_role" data-cy="role" formControlName="role" />
+          <div *ngIf="editForm.get('role')!.invalid && (editForm.get('role')!.dirty || editForm.get('role')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('role')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_location">Location</label>
+          <input type="text" class="form-control" name="location" id="field_location" data-cy="location" formControlName="location" />
+          <div *ngIf="editForm.get('location')!.invalid && (editForm.get('location')!.dirty || editForm.get('location')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('location')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_salary">Salary</label>
+          <input type="number" class="form-control" name="salary" id="field_salary" data-cy="salary" formControlName="salary" />
+          <div *ngIf="editForm.get('salary')!.invalid && (editForm.get('salary')!.dirty || editForm.get('salary')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('salary')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('salary')?.errors?.number"> This field should be a number. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_duration">Duration</label>
+          <input type="number" class="form-control" name="duration" id="field_duration" data-cy="duration" formControlName="duration" />
+          <div *ngIf="editForm.get('duration')!.invalid && (editForm.get('duration')!.dirty || editForm.get('duration')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('duration')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('duration')?.errors?.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_industry">Industry</label>
+          <input type="text" class="form-control" name="industry" id="field_industry" data-cy="industry" formControlName="industry" />
+          <div *ngIf="editForm.get('industry')!.invalid && (editForm.get('industry')!.dirty || editForm.get('industry')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('industry')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_about">About</label>
+          <textarea class="form-control" name="about" id="field_about" data-cy="about" formControlName="about"></textarea>
+          <div *ngIf="editForm.get('about')!.invalid && (editForm.get('about')!.dirty || editForm.get('about')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('about')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_jobDescription">Job Description</label>
+          <textarea
+            class="form-control"
+            name="jobDescription"
+            id="field_jobDescription"
+            data-cy="jobDescription"
+            formControlName="jobDescription"
+          ></textarea>
+          <div
+            *ngIf="
+              editForm.get('jobDescription')!.invalid && (editForm.get('jobDescription')!.dirty || editForm.get('jobDescription')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('jobDescription')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_minimumQualification">Minimum Qualification</label>
+          <textarea
+            class="form-control"
+            name="minimumQualification"
+            id="field_minimumQualification"
+            data-cy="minimumQualification"
+            formControlName="minimumQualification"
+          ></textarea>
+          <div
+            *ngIf="
+              editForm.get('minimumQualification')!.invalid &&
+              (editForm.get('minimumQualification')!.dirty || editForm.get('minimumQualification')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('minimumQualification')?.errors?.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_applicationDeadline">Application Deadline</label>
+          <div class="d-flex">
+            <input
+              id="field_applicationDeadline"
+              data-cy="applicationDeadline"
+              type="datetime-local"
+              class="form-control"
+              name="applicationDeadline"
+              formControlName="applicationDeadline"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div
+            *ngIf="
+              editForm.get('applicationDeadline')!.invalid &&
+              (editForm.get('applicationDeadline')!.dirty || editForm.get('applicationDeadline')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('applicationDeadline')?.errors?.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('applicationDeadline')?.errors?.datetimelocal">
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_userCompany">User Company</label>
+          <select
+            class="form-control"
+            id="field_userCompany"
+            data-cy="userCompany"
+            name="userCompany"
+            formControlName="userCompany"
+            [compareWith]="compareUserCompany"
+            required="true"
+          >
+            <option [ngValue]="null">Select a user company</option>
+            <option [ngValue]="userCompanyOption" *ngFor="let userCompanyOption of userCompaniesSharedCollection">
+              {{ userCompanyOption.name ? userCompanyOption.name : 'No Name Provided' }}
+            </option>
+            <div
+              *ngIf="editForm.get('userCompany')!.invalid && (editForm.get('userCompany')!.dirty || editForm.get('userCompany')!.touched)"
+            >
+              <small class="form-text text-danger" *ngIf="editForm.get('userCompany')?.errors?.required">This field is required</small>
+            </div>
+          </select>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label class="form-label" for="field_link">Link</label>
+        <input type="text" class="form-control" name="link" id="field_link" data-cy="link" formControlName="link" />
+        <div *ngIf="editForm.get('link')!.invalid && (editForm.get('link')!.dirty || editForm.get('link')!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get('link')?.errors?.required"> This field is required. </small>
+        </div>
+      </div>
+
+      <div class="text-center mt-5">
+        <button
+          type="button"
+          id="cancel-save"
+          data-cy="entityCreateCancelButton"
+          class="btn btn-secondary btn-submit1"
+          (click)="previousState()"
+        >
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary btn-submit2"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

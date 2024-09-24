@@ -1,0 +1,55 @@
+.listing {
+  background: #44428b;
+  border-radius: 30px;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+.profile-heading {
+  color: white;
+  padding: 10px 20px 0 20px;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.profile-photo {
+  height: 250px;
+  width: 100%;
+  object-fit: scale-down;
+  border-radius: 30px 30px 0 0;
+  background: #928fff;
+  padding: 20px 20px 20px 20px;
+}
+.profile-size {
+  padding: 10px 20px 20px 20px;
+  color: white;
+  font-weight: 300;
+}
+
+section.listing a {
+  padding-left: 20px;
+  text-decoration: none;
+  color: white;
+}
+
+section.listing a::after {
+  content: '\203A';
+  margin-left: 5px;
+}
+
+.profile-details {
+  background-color: #605dc8ff;
+  border-radius: 30px;
+  border: 0;
+  padding: 0.75rem 1.5rem;
+  margin-left: 20px;
+  color: white;
+}
+
+.dashboard {
+  background-color: #605dc8ff;
+  border-radius: 30px;
+  border: 0;
+  padding: 0.75rem 1.5rem;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  color: white;
+}

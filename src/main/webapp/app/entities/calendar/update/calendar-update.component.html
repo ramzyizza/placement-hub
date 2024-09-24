@@ -1,0 +1,124 @@
+<div class="d-flex justify-content-center container mb-5">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <div class="text-center mb-3">
+        <h2 id="jhi-calendar-heading" data-cy="CalendarCreateUpdateHeading">Create or edit a Calendar</h2>
+      </div>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null" [hidden]="true">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_calendarName">Calendar Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="calendarName"
+            id="field_calendarName"
+            data-cy="calendarName"
+            formControlName="calendarName"
+          />
+          <div
+            *ngIf="editForm.get('calendarName')!.invalid && (editForm.get('calendarName')!.dirty || editForm.get('calendarName')!.touched)"
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('calendarName')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_calendarDescription">Calendar Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="calendarDescription"
+            id="field_calendarDescription"
+            data-cy="calendarDescription"
+            formControlName="calendarDescription"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_calendarColor">Calendar Color</label>
+          <select
+            class="form-control"
+            name="calendarColor"
+            formControlName="calendarColor"
+            id="field_calendarColor"
+            data-cy="calendarColor"
+          >
+            <option [ngValue]="null">Select color</option>
+            <option *ngFor="let option of colorOptions" [ngValue]="option.key">
+              {{ option.value }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('calendarColor')!.invalid && (editForm.get('calendarColor')!.dirty || editForm.get('calendarColor')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('calendarColor')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_appUser">App User</label>
+          <select
+            class="form-control"
+            id="field_appUser"
+            data-cy="appUser"
+            name="appUser"
+            formControlName="appUser"
+            [compareWith]="compareUser"
+            required="true"
+          >
+            <option [ngValue]="null">Select a user</option>
+            <option [ngValue]="userOption" *ngFor="let userOption of usersSharedCollection">
+              {{ userOption.login ? userOption.login : 'No Login Provided' }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('appUser')!.invalid && (editForm.get('appUser')!.dirty || editForm.get('appUser')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('appUser')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center btn-calendar">
+        <button
+          type="button"
+          id="cancel-save"
+          data-cy="entityCreateCancelButton"
+          class="btn btn-secondary btn-submit1"
+          (click)="previousState()"
+        >
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary btn-submit2"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+
+        <button
+          type="button"
+          id="delete-entity"
+          data-cy="entityCreateDeleteButton"
+          class="btn btn-secondary btn-submit3"
+          (click)="deleteCalendar()"
+          [hidden]="checkNew()"
+        >
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Delete</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

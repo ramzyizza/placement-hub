@@ -1,0 +1,88 @@
+<div class="row" style="padding: 30px">
+  <!-- Mini-calendar <-->
+  <div class="col-sm-3">
+    <div class="card mini-calendar">
+      <div class="card-header" style="display: flex; justify-content: space-between; padding-right: 5px">
+        <span class="month-header">{{ monthHeader }}</span>
+        <button class="create-button" (click)="openCreateEventPopUp()">+ Event</button>
+      </div>
+      <mat-card>
+        <mat-calendar
+          class="custom-mat-calendar"
+          [(selected)]="selected"
+          (selectedChange)="calendar?.gotoDate(selectFormat(selected))"
+        ></mat-calendar>
+        <!--          style="width: auto"-->
+        <!--(selectedChange)="selectedDate(selected)"-->
+      </mat-card>
+    </div>
+
+    <!-- Calendars Selected <-->
+    <br />
+
+    <div class="card mini-calendar">
+      <div class="card-header" style="display: flex; justify-content: space-between">
+        <span class="cal-header">Calendars</span>
+        <span>
+          <button class="create-cal-button" (click)="openCreateCalPopUp()">+ Calendar</button>
+        </span>
+      </div>
+      <div *ngIf="calendars.length > 0" style="height: 130px; overflow-y: auto; padding-top: 5px; margin-bottom: 10px">
+        <div *ngFor="let calendar of calendars" style="padding-top: 5px; padding-left: 5px">
+          <label style="display: flex; align-items: center; padding-left: 10px">
+            <input
+              type="checkbox"
+              checked="true"
+              style="margin-right: 5px; accent-color: {{ getColor(calendar.calendarColor?.toString()!) }}"
+              (change)="getSelectedCalendars($event, calendar.id)"
+            />
+            {{ calendar.calendarName }}
+            <button class="edit-calendar" (click)="editCalendar(calendar)">&#8942;</button>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Upcoming Interviews <-->
+    <br />
+    <div class="card mini-calendar" style="height: 190px">
+      <div class="card-header interview-header">Interviews</div>
+      <ul class="list-group" style="height: 200px; overflow-y: auto; padding-top: 10px">
+        <li
+          *ngFor="let event of interviewEvents"
+          class="list-group-item interview-card"
+          style="margin-bottom: 10px; margin-right: 10px; margin-left: 10px"
+        >
+          <div class="jh-card">
+            <p>{{ event.eventName }}</p>
+            <p>{{ getDateToDisplay(event) }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Upcoming Assessment Centres <-->
+    <br />
+    <div class="card mini-calendar" style="height: 190px">
+      <div class="card-header ac-header">Assessment Centres</div>
+      <ul class="list-group" style="height: 200px; overflow-y: auto; padding-top: 10px">
+        <li
+          *ngFor="let ac of acEvents"
+          class="list-group-item interview-card"
+          style="margin-bottom: 10px; margin-right: 10px; margin-left: 10px"
+        >
+          <div class="jh-card">
+            <p>{{ ac.eventName }}</p>
+            <p>{{ getDateToDisplay(ac) }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Full Calendar Component (monthly, weekly, daily views)-->
+  <div class="col-sm-9" style="padding-right: 30px">
+    <div id="calendar" class="custom-calendar"></div>
+    <!--    <full-calendar [options]="calendarOptions" class="custom-calendar" id="calendar"></full-calendar>-->
+  </div>
+</div>

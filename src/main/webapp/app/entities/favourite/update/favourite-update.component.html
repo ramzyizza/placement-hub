@@ -1,0 +1,109 @@
+<div class="d-flex justify-content-center container">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <div class="text-center mb-5">
+        <h2 id="jhi-favourite-heading" data-cy="FavouriteCreateUpdateHeading">Create or edit a Favourite</h2>
+      </div>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_createdAt">Created At</label>
+          <div class="d-flex">
+            <input
+              id="field_createdAt"
+              data-cy="createdAt"
+              type="datetime-local"
+              class="form-control"
+              name="createdAt"
+              formControlName="createdAt"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('createdAt')!.invalid && (editForm.get('createdAt')!.dirty || editForm.get('createdAt')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('createdAt')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('createdAt')?.errors?.datetimelocal">
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_appUser">App User</label>
+          <select
+            class="form-control"
+            id="field_appUser"
+            data-cy="appUser"
+            name="appUser"
+            formControlName="appUser"
+            [compareWith]="compareUser"
+            required="true"
+          >
+            <option [ngValue]="null">Select a user</option>
+            <option [ngValue]="userOption" *ngFor="let userOption of usersSharedCollection">
+              {{ userOption.login ? userOption.login : 'No Login Provided' }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('appUser')!.invalid && (editForm.get('appUser')!.dirty || editForm.get('appUser')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('appUser')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_article">Article</label>
+          <select
+            class="form-control"
+            id="field_article"
+            data-cy="article"
+            name="article"
+            formControlName="article"
+            [compareWith]="compareArticle"
+          >
+            <option [ngValue]="null">Select an article</option>
+            <option [ngValue]="articleOption" *ngFor="let articleOption of articlesSharedCollection">
+              {{ articleOption.articleName ? articleOption.articleName : 'No Article Name Provided' }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_video">Video</label>
+          <select class="form-control" id="field_video" data-cy="video" name="video" formControlName="video" [compareWith]="compareVideo">
+            <option [ngValue]="null">Select a video</option>
+            <option [ngValue]="videoOption" *ngFor="let videoOption of videosSharedCollection">
+              {{ videoOption.videoTitle ? videoOption.videoTitle : 'No Video Title Provided' }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="text-center mt-5">
+        <button
+          type="button"
+          id="cancel-save"
+          data-cy="entityCreateCancelButton"
+          class="btn btn-secondary btn-submit1"
+          (click)="previousState()"
+        >
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary btn-submit2"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

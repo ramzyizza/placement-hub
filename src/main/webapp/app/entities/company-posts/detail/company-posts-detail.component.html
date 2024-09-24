@@ -1,0 +1,60 @@
+<div class="container d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="companyPosts">
+      <div class="text-center">
+        <h2 data-cy="companyPostsDetailsHeading"><span>Company Posts</span></h2>
+      </div>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ companyPosts.id }}</span>
+        </dd>
+        <dt><span>Post Content</span></dt>
+        <dd>
+          <span>{{ companyPosts.postContent }}</span>
+        </dd>
+        <dt><span>Post Image</span></dt>
+        <dd>
+          <div *ngIf="companyPosts.postImage">
+            <a (click)="openFile(companyPosts.postImage, companyPosts.postImageContentType)">
+              <img
+                [src]="'data:' + companyPosts.postImageContentType + ';base64,' + companyPosts.postImage"
+                style="max-width: 100%"
+                alt="companyPosts image"
+                class="content-image d-flex"
+              />
+            </a>
+            {{ companyPosts.postImageContentType }}, {{ byteSize(companyPosts.postImage) }}
+          </div>
+        </dd>
+        <dt><span>Created At</span></dt>
+        <dd>
+          <span>{{ companyPosts.createdAt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>User Company</span></dt>
+        <dd>
+          <div *ngIf="companyPosts.userCompany">
+            <a [routerLink]="['/user-company', companyPosts.userCompany.id, 'view']">{{ companyPosts.userCompany.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <div class="text-center">
+        <button type="submit" (click)="previousState()" class="btn btn-info btn-submit1" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/company-posts', companyPosts.id, 'edit']" class="btn btn-primary btn-submit2">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

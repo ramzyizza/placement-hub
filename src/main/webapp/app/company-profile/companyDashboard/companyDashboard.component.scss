@@ -1,0 +1,30 @@
+.div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.posts {
+  flex-direction: column;
+  width: 50%;
+}
+.listings {
+  flex-direction: column;
+  width: 50%;
+}
+.post-button {
+  background-color: #605dc8ff;
+  border-radius: 30px;
+  border: 0;
+  padding: 0.75rem 1.5rem;
+  margin: 20px 20px 20px 20px;
+  color: white;
+}
+
+.placement-button {
+  background-color: #605dc8ff;
+  border-radius: 30px;
+  border: 0;
+  padding: 0.75rem 1.5rem;
+  margin: 20px 20px 20px 20px;
+  color: white;
+}

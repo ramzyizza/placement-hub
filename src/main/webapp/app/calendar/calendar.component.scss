@@ -1,0 +1,138 @@
+//Card header
+.card-header {
+  background-color: transparent;
+}
+// Month header Styling
+.month-header {
+  margin-right: 25%;
+  font-size: 25px;
+  color: #1c1b1f;
+}
+// Create button Styling
+.create-button {
+  margin-right: 10px;
+  background-color: #111b53;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+
+.create-button:hover {
+  background-color: #0f1440;
+}
+// Mat-calendar (mini calendar) Styling
+.mini-calendar {
+  background-color: rgba(103, 80, 164, 0.11);
+  border-radius: 28px;
+  height: fit-content;
+}
+
+.custom-mat-calendar {
+}
+
+.custom-mat-calendar ::ng-deep .mat-calendar-header .mat-calendar-previous-button,
+.custom-mat-calendar ::ng-deep .mat-calendar-header .mat-calendar-next-button {
+  background-color: transparent;
+}
+
+.custom-mat-calendar ::ng-deep .mat-calendar-header .mat-calendar-period-button {
+  background-color: transparent;
+}
+
+.custom-mat-calendar ::ng-deep .mat-calendar-body-today {
+  background-color: #0f1440;
+  color: white;
+}
+
+.custom-mat-calendar ::ng-deep .mat-calendar-body-cell {
+  border-radius: 0;
+  border: none;
+  //border-color: transparent;
+}
+// Full Calendar Styling
+.custom-calendar {
+}
+
+.custom-calendar ::ng-deep .fc-prev-button {
+  background-color: #0f1440;
+  border-radius: 25px;
+}
+
+.custom-calendar ::ng-deep .fc-next-button {
+  background-color: #0f1440;
+  border-radius: 25px;
+}
+
+.fc-prev-button:hover {
+  background-color: #0f1440;
+}
+
+.fc-next-button:hover {
+  background-color: #0f1440;
+}
+
+.custom-calendar ::ng-deep .fc-button {
+  background-color: #0f1440;
+  border-radius: 25px;
+}
+
+.customer-calendar ::ng-deep fc-daygrid-day-number {
+  color: black;
+}
+.custom-calendar ::ng-deep .fc-col-header-cell-cushion {
+  color: black;
+}
+
+// Calendars Selected Styling
+.cal-header {
+  margin-right: 23%;
+  font-size: 25px;
+  color: #1c1b1f;
+}
+
+.create-cal-button {
+  height: auto;
+  width: auto;
+  background-color: #111b53;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+
+.create-cal-button:hover {
+  background-color: #0f1440;
+}
+
+.edit-calendar {
+  margin-left: auto;
+  margin-right: 10px;
+  background: transparent;
+  border-color: transparent;
+  font-size: 20px;
+}
+
+// Interview Styling
+.interview-header {
+  font-size: 25px;
+  color: #1c1b1f;
+}
+
+.interview-card {
+  border-radius: 12px;
+  width: auto;
+}
+// AC Styling
+.ac-header {
+  font-size: 25px;
+  color: #1c1b1f;
+}
+
+//hiding element at bottom of the page
+::ng-deep .cdk-live-announcer-element.cdk-visually-hidden {
+  display: none;
+  visibility: hidden;
+}

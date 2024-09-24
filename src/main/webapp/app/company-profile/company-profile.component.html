@@ -1,0 +1,15 @@
+<div class="main-hero background-img align-items-center">
+  <div class="container text-center">
+    <h2 class="heading-hero heading-text2"><b> Discover Career Paths, Opportunities and more with Company Profiles</b></h2>
+    <h2 class="heading-subtitle">Attract Talent, Register Your Company Today</h2>
+    <div>
+      <button type="button" class="btn btn-primary-home btn-primary btn-lg" [routerLink]="'/user-company/new'">Register Company</button>
+    </div>
+  </div>
+</div>
+<body>
+  <section class="results">
+    <user-company-display *ngFor="let IUserCompany of userCompany" [userCompany]="IUserCompany"></user-company-display>
+    <!-- hello -->
+  </section>
+</body>
